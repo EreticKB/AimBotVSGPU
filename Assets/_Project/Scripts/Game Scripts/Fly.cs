@@ -5,6 +5,7 @@ public class Fly : MonoBehaviour
     public float Speed = 10;
     private Rigidbody _rigidbody;
     bool reverse;
+    static Vector3 _currentSpeed;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -15,8 +16,10 @@ public class Fly : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) reverse = reverse ? false : true;
     }
     private void FixedUpdate()
-    {  
-        _rigidbody.velocity = reverse ? Vector3.forward * Speed : Vector3.back * Speed;
+    {
+        _currentSpeed = _rigidbody.velocity;
+        _currentSpeed.z = reverse ? Speed : -Speed;
+        _rigidbody.velocity = _currentSpeed;
     }
     
 }

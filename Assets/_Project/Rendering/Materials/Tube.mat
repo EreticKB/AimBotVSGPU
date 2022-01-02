@@ -105,6 +105,7 @@ Material:
     - Vector1_8196d1295b5f455196713d9b147b8de8: 0
     - Vector1_faa85aedcd6e4cdbb5a5f93a01145667: 0
     - _AlphaClip: 0
+    - _Alpha_Clip: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -120,13 +121,13 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _HorizontalAmount: -0.001
-    - _Metallic: 0.534
+    - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _PositionOffSet: -300
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.596
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -137,11 +138,11 @@ Material:
     m_Colors:
     - Vector2_5a0b749a7b064986bea9f634e1bf4335: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.5566038, g: 0.25446305, b: 0.23891956, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OffSet: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Tiling: {r: 0.01, g: 0.01, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1002504896025451878
 MonoBehaviour:

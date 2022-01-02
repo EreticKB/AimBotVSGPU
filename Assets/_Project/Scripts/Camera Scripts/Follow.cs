@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Follow : MonoBehaviour
 {
-    public Transform Player;
-    private Transform _camera;
-    public Vector3 CameraOffset;
+    public Transform Followed;
+    public bool IsPositionFollowed;
+    private Transform _follower;
+    public Vector3 Offset;
 
     private void Awake()
     {
-        _camera = transform;
+        _follower = transform;
     }
     private void Update()
     {
-        _camera.position = Player.position + CameraOffset;
+        _follower.position = IsPositionFollowed ? Followed.position + Offset : new Vector3(0, 0, Followed.position.z + Offset.z);
     }
 }

@@ -1,73 +1,54 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Strafe : MonoBehaviour
 {
     public float Speed = 1;
     public float FieldRadius;
-    //private Rigidbody _rigidbody;
-    private Transform _transform;
-    public List<MeshRenderer> Meshes;
-    private Vector2 _lerp = new Vector2(0.5f, 0.5f);
-    private float _lerpX = 0.5f;
-    private float _lerpY = 0.5f;
+    public Transform _transform;
+    private Vector2 _lerp = new Vector2(0f, 0f);
     private static Vector3 _position;
-    //private float _squareDistance;
-    
+
     private void Awake()
     {
-        //_rigidbody = GetComponent<Rigidbody>();
         _transform = transform;
-        //_squareDistance = Mathf.Pow(FieldRadius, 2);
     }
 
-    /*устарело, пока оставлю, если с лерпом все будет плохо.
-    private void FixedUpdate()
-    {
-        if (Input.GetKey(KeyCode.W)) _rigidbody.AddForce(Vector3.down * Speed);
-        if (Input.GetKey(KeyCode.D)) _rigidbody.AddForce(Vector3.right * Speed);
-        if (Input.GetKey(KeyCode.A)) _rigidbody.AddForce(Vector3.left * Speed);        
-        if (Input.GetKey(KeyCode.S)) _rigidbody.AddForce(Vector3.up * Speed);
-        if (Input.GetKeyDown(KeyCode.Escape)) DestructionAnimation.DestroyEffects(_audioSource);
-    }*/
 
-    public void Update()
+    private void Update()
     {
+        if (Input.GetKey(KeyCode.W)) _lerp = moveUp(_lerp, Speed);
+        if (Input.GetKey(KeyCode.S)) _lerp = moveDown(_lerp, Speed);
+        if (Input.GetKey(KeyCode.A)) _lerp = moveLeft(_lerp, Speed);
+        if (Input.GetKey(KeyCode.D)) _lerp = moveRight(_lerp, Speed);
         _position = _transform.position;
-        _position.x = Mathf.Lerp(-FieldRadius, FieldRadius, _lerpX);
-        _position.y = Mathf.Lerp(-FieldRadius, FieldRadius, _lerpY);
+        _position.x = Mathf.LerpUnclamped(0, FieldRadius, _lerp.x);
+        _position.y = Mathf.LerpUnclamped(0, FieldRadius, _lerp.y);
         _transform.position = _position;
-        if (Input.GetKey(KeyCode.W)) moveUp(_position);
-        if (Input.GetKey(KeyCode.S)) moveDown(_position);
-        if (Input.GetKey(KeyCode.A)) moveLeft(_position);
-        if (Input.GetKey(KeyCode.D)) moveRight(_position);
     }
 
-    private void moveUp(Vector3 position)
+    private Vector2 moveUp(Vector2 lerp, float speed)
     {
-        /*if (((position.x * position.x) + (position.y * position.y)) >= _squareDistance && position.y > 0) return;
-        _lerpY += Speed * Time.deltaTime;
-        if (_lerpY > 1) _lerpY = 1;*/
+        lerp += Vector2.up * speed * Time.deltaTime;
+        if (lerp.sqrMagnitude > 1) return lerp.normalized;
+        else return lerp;
     }
-    private void moveDown(Vector3 position)
+    private Vector2 moveDown(Vector2 lerp, float speed)
     {
-        /*if (((position.x * position.x) + (position.y * position.y)) >= _squareDistance && position.y < 0) return;
-        _lerpY -= Speed * Time.deltaTime;
-        if (_lerpY < 0) _lerpY = 0;*/
+        lerp += Vector2.down * speed * Time.deltaTime;
+        if (lerp.sqrMagnitude > 1) return lerp.normalized;
+        else return lerp;
     }
-    
-    private void moveRight(Vector3 position)
+
+    private Vector2 moveRight(Vector2 lerp, float speed)
     {
-        /*if (((position.x * position.x) + (position.y * position.y)) >= _squareDistance && position.x > 0) return;
-        _lerpX += Speed * Time.deltaTime;
-        if (_lerpX > 1) _lerpX = 1;*/
+        lerp += Vector2.right * speed * Time.deltaTime;
+        if (lerp.sqrMagnitude > 1) return lerp.normalized;
+        else return lerp;
     }
-    private void moveLeft(Vector3 position)
+    private Vector2 moveLeft(Vector2 lerp, float speed)
     {
-        /*if (((position.x * position.x) + (position.y * position.y)) >= _squareDistance && position.x < 0) return;
-        _lerpX -= Speed * Time.deltaTime;
-        if (_lerpX < 0) _lerpX = 0;*/
+        lerp += Vector2.left * speed * Time.deltaTime;
+        if (lerp.sqrMagnitude > 1) return lerp.normalized;
+        else return lerp;
     }
 }

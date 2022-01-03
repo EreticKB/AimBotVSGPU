@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 1203449635315816093}
   - component: {fileID: 2006903776826283127}
   - component: {fileID: 5116616931661890694}
-  - component: {fileID: 316134905513851370}
-  - component: {fileID: 1607302638281045240}
   m_Layer: 0
   m_Name: Segment 85_55_120
   m_TagString: Untagged
@@ -651,25 +649,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &316134905513851370
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5028120924579926805}
-  m_Mesh: {fileID: 0}
---- !u!64 &1607302638281045240
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5028120924579926805}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}

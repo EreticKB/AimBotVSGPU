@@ -34,9 +34,4 @@ public class FollowerBehaviour : MonoBehaviour, IFollower
     {
         return MyName;
     }
-
-    public bool IsRotate()
-    {
-        return IsRotateMe;
-    }
 }

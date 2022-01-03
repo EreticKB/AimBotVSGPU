@@ -59,10 +59,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6053311696152234669, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6446084337222881988, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
       propertyPath: m_Tangents.Array.data[4].x
       value: NaN

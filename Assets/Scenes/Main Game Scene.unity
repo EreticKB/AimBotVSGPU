@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 90de5545fdb3c284c881eca9f38d0313, type: 2}
   m_LightingSettings: {fileID: 1999301100}
 --- !u!196 &4
 NavMeshSettings:
@@ -644,7 +644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611856186107604443, guid: 5a5a53a0bae664444b13d2eacdd6defc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2714223172444169101, guid: 5a5a53a0bae664444b13d2eacdd6defc, type: 3}
       propertyPath: m_Mesh
@@ -794,7 +794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611856186107604443, guid: 5a5a53a0bae664444b13d2eacdd6defc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2652350865799724208, guid: 5a5a53a0bae664444b13d2eacdd6defc, type: 3}
       propertyPath: m_IsActive
@@ -2583,6 +2583,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1459442438}
+  - {fileID: 915862385}
   m_Father: {fileID: 2116283323}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2706,7 +2707,6 @@ GameObject:
   - component: {fileID: 915862385}
   - component: {fileID: 915862384}
   - component: {fileID: 915862383}
-  - component: {fileID: 915862386}
   - component: {fileID: 915862387}
   m_Layer: 0
   m_Name: Ship Camera
@@ -2767,9 +2767,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.21875
+    x: 0
     y: 0
-    width: 0.5625
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1200
@@ -2798,30 +2798,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915862382}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 862657821}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &915862386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915862382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0ebd1f5fa47a7d479518423e82ab1f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 0, z: 7}
-  IsPositionFollowed: 1
-  IsRotateMe: 1
-  Player: {fileID: 862657818}
-  MyName: ShipCamera
 --- !u!81 &915862387
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4953,7 +4936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611856186107604443, guid: 5a5a53a0bae664444b13d2eacdd6defc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2652350865799724208, guid: 5a5a53a0bae664444b13d2eacdd6defc, type: 3}
       propertyPath: m_IsActive
@@ -11716,7 +11699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611856186107604443, guid: 5a5a53a0bae664444b13d2eacdd6defc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2714223172444169101, guid: 5a5a53a0bae664444b13d2eacdd6defc, type: 3}
       propertyPath: m_Mesh
@@ -12352,7 +12335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799208346}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 900}
+  m_LocalPosition: {x: 0, y: 0, z: 1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1818398343}
@@ -12373,7 +12356,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Offset: {x: 0, y: 0, z: 900}
   IsPositionFollowed: 0
-  IsRotateMe: 0
   Player: {fileID: 862657818}
   MyName: 
 --- !u!199 &1799208349
@@ -12525,7 +12507,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -13010,7 +12992,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1500
+    maxNumParticles: 2000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -13275,7 +13257,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 150
+      scalar: 200
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -13696,7 +13678,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -17172,7 +17154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611856186107604443, guid: 5a5a53a0bae664444b13d2eacdd6defc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2652350865799724208, guid: 5a5a53a0bae664444b13d2eacdd6defc, type: 3}
       propertyPath: m_IsActive
@@ -17328,7 +17310,7 @@ Transform:
   m_GameObject: {fileID: 1818398342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_LocalScale: {x: 270, y: 270, z: 90}
   m_Children: []
   m_Father: {fileID: 1799208347}
   m_RootOrder: 0
@@ -17365,7 +17347,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 666c76bc815377546a96522c9ad2483f, type: 2}
+  - {fileID: 2100000, guid: e02f3e1076d63de4c85ea0a7006cdb44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18359,5 +18341,5 @@ Transform:
   - {fileID: 862657821}
   - {fileID: 1799208347}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

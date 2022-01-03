@@ -1,20 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Follow : MonoBehaviour
+public class Follow
 {
-    public Transform Followed;
-    public bool IsPositionFollowed;
     private Transform _follower;
-    public Vector3 Offset;
+    private Vector3 _offset;
+    private bool _isPositionFollowed;
 
-    private void Awake()
+    public Follow(Transform transform, Vector3 offset, bool isPositionFollowed)
     {
         _follower = transform;
+        _offset = offset;
+        _isPositionFollowed = isPositionFollowed;
     }
-    private void Update()
+    public void Update(Vector3 followed)
     {
-        _follower.position = IsPositionFollowed ? Followed.position + Offset : new Vector3(0, 0, Followed.position.z + Offset.z);
+        _follower.position = _isPositionFollowed ? followed + _offset : new Vector3(0, 0, followed.z + _offset.z);
     }
 }

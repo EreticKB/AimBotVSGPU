@@ -1,28 +1,50 @@
 using UnityEngine;
 
-public class Strafe : MonoBehaviour
+public class Strafe
 {
-    public float Speed = 1;
-    public float FieldRadius;
-    public Transform _transform;
+    private float _speed;
+    public float Speed
+    {
+        get => _speed;
+        set
+        {
+            if (value > 3) _speed = 3;
+            else if (value < 0) _speed = 0;
+            else _speed = value;
+        }
+    }
+
+    private float _fieldRadius;
+    public float FieldRadius
+    {
+        get => _fieldRadius;
+        set
+        {
+            if (value < 0) _fieldRadius = 0;
+            else _fieldRadius = value;
+        }
+    }
+    private Transform _transform;
     private Vector2 _lerp = new Vector2(0f, 0f);
     private static Vector3 _position;
 
-    private void Awake()
+    public Strafe(Transform transform, float speed, float fieldRadius)
     {
         _transform = transform;
+        Speed = speed;
+        FieldRadius = fieldRadius;
     }
 
 
-    private void Update()
+    public void Update()
     {
         if (Input.GetKey(KeyCode.W)) _lerp = moveUp(_lerp, Speed);
         if (Input.GetKey(KeyCode.S)) _lerp = moveDown(_lerp, Speed);
         if (Input.GetKey(KeyCode.A)) _lerp = moveLeft(_lerp, Speed);
         if (Input.GetKey(KeyCode.D)) _lerp = moveRight(_lerp, Speed);
         _position = _transform.position;
-        _position.x = Mathf.LerpUnclamped(0, FieldRadius, _lerp.x);
-        _position.y = Mathf.LerpUnclamped(0, FieldRadius, _lerp.y);
+        _position.x = Mathf.LerpUnclamped(0, _fieldRadius, _lerp.x);
+        _position.y = Mathf.LerpUnclamped(0, _fieldRadius, _lerp.y);
         _transform.position = _position;
     }
 

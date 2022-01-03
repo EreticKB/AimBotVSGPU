@@ -2497,9 +2497,9 @@ GameObject:
   - component: {fileID: 862657821}
   - component: {fileID: 862657820}
   - component: {fileID: 862657819}
-  - component: {fileID: 862657818}
   - component: {fileID: 862657822}
   - component: {fileID: 862657823}
+  - component: {fileID: 862657818}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2516,17 +2516,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 862657817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 202cf2f7e7ed6ce488d5119a87c84a65, type: 3}
+  m_Script: {fileID: 11500000, guid: 25784cd811c5a1a4dac25ddf79eabefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1
-  FieldRadius: 150
-  Meshes:
-  - {fileID: 1830324432}
-  - {fileID: 1613403222}
-  - {fileID: 957343548}
-  - {fileID: 992323267}
-  - {fileID: 1962080143}
 --- !u!54 &862657819
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2800,12 +2792,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 915862382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1b5129b957f5d499558ffffeb984ea, type: 3}
+  m_Script: {fileID: 11500000, guid: d0ebd1f5fa47a7d479518423e82ab1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Followed: {fileID: 862657821}
-  IsPositionFollowed: 1
   Offset: {x: 0, y: 0, z: 7}
+  IsPositionFollowed: 1
+  Player: {fileID: 862657818}
 --- !u!81 &915862387
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2978,11 +2970,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!23 &957343548 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3623338087060962436, guid: 1dd43d0f1846bbb4fa2326a8b196682a, type: 3}
-  m_PrefabInstance: {fileID: 1972138371}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3264,11 +3251,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!23 &992323267 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3623338086830434496, guid: 1dd43d0f1846bbb4fa2326a8b196682a, type: 3}
-  m_PrefabInstance: {fileID: 1972138371}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1002167166
 Mesh:
   m_ObjectHideFlags: 0
@@ -5445,6 +5427,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1369035961}
     m_Modifications:
+    - target: {fileID: -4192611886034057324, guid: a1a7242b4b0cc4c4aa043e8cdc2daa4e, type: 3}
+      propertyPath: Difficulty
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3016074636768901912, guid: a1a7242b4b0cc4c4aa043e8cdc2daa4e, type: 3}
       propertyPath: m_Name
       value: RingBase
@@ -6333,11 +6319,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!23 &1613403222 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3623338085048680263, guid: 1dd43d0f1846bbb4fa2326a8b196682a, type: 3}
-  m_PrefabInstance: {fileID: 1972138371}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1622691885
 Mesh:
   m_ObjectHideFlags: 0
@@ -7577,12 +7558,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1799208346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1b5129b957f5d499558ffffeb984ea, type: 3}
+  m_Script: {fileID: 11500000, guid: d0ebd1f5fa47a7d479518423e82ab1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Followed: {fileID: 862657821}
-  IsPositionFollowed: 0
   Offset: {x: 0, y: 0, z: 900}
+  IsPositionFollowed: 0
+  Player: {fileID: 862657818}
 --- !u!199 &1799208349
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -12582,11 +12563,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818398342}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1830324432 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3623338087105183208, guid: 1dd43d0f1846bbb4fa2326a8b196682a, type: 3}
-  m_PrefabInstance: {fileID: 1972138371}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1833577452
 Mesh:
   m_ObjectHideFlags: 0
@@ -13099,11 +13075,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!23 &1962080143 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3623338085380994903, guid: 1dd43d0f1846bbb4fa2326a8b196682a, type: 3}
-  m_PrefabInstance: {fileID: 1972138371}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1972138371
 PrefabInstance:
   m_ObjectHideFlags: 0

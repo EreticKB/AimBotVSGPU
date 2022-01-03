@@ -12,7 +12,7 @@ public class Follow
         _offset = offset;
         _isPositionFollowed = isPositionFollowed;
     }
-    public void Update(Vector3 followed)
+    public void UpdatePosition(Vector3 followed)
     {
         _follower.position = _isPositionFollowed ? followed + _offset : new Vector3(0, 0, followed.z + _offset.z);
     }

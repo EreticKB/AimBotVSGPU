@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5409367090158275020, guid: a1a7242b4b0cc4c4aa043e8cdc2daa4e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1a7242b4b0cc4c4aa043e8cdc2daa4e, type: 3}
 --- !u!4 &4433060916473682027 stripped
@@ -149,6 +153,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9174922057228956772, guid: 4f2ac57435f288e448d27496e615d714, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f2ac57435f288e448d27496e615d714, type: 3}
 --- !u!1001 &2158182212613301172
@@ -230,6 +238,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9174922057228956772, guid: 4f2ac57435f288e448d27496e615d714, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f2ac57435f288e448d27496e615d714, type: 3}
 --- !u!1001 &2416210736995505962
@@ -246,6 +258,10 @@ PrefabInstance:
     - target: {fileID: 851964316232143472, guid: 1e7d358b70ace8641be8749a4d46d636, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 851964316232143472, guid: 1e7d358b70ace8641be8749a4d46d636, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1558232979301624563, guid: 1e7d358b70ace8641be8749a4d46d636, type: 3}
       propertyPath: m_Mesh
@@ -379,6 +395,10 @@ PrefabInstance:
     - target: {fileID: 9174922057228956772, guid: 4f2ac57435f288e448d27496e615d714, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174922057228956772, guid: 4f2ac57435f288e448d27496e615d714, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f2ac57435f288e448d27496e615d714, type: 3}

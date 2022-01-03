@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: RingBasic
   m_Shader: {fileID: -6465566751694194690, guid: f89fef975e1379f4294dce6ae558a382, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: BOOLEAN_08931F2476CF49149D79C3020E57729A_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -100,7 +100,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - BOOLEAN_08931F2476CF49149D79C3020E57729A: 0
+    - BOOLEAN_08931F2476CF49149D79C3020E57729A: 1
     - Vector1_6427af6810e34e09b5be168c3fa59131: 0.448
     - Vector1_8196d1295b5f455196713d9b147b8de8: 0
     - Vector1_faa85aedcd6e4cdbb5a5f93a01145667: 0
@@ -120,19 +120,19 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HorizontalAmount: -0.001
+    - _HorizontalAmount: -0.0005
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _PositionOffSet: -300
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 1
+    - _Smoothness: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _VerticalAmount: -0.001
+    - _VerticalAmount: -0.0005
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

@@ -88,6 +88,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4192611886034057324, guid: a1a7242b4b0cc4c4aa043e8cdc2daa4e, type: 3}
+      propertyPath: _difficulty
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3016074636768901912, guid: a1a7242b4b0cc4c4aa043e8cdc2daa4e, type: 3}
       propertyPath: m_Name
       value: Ring Type Double KeyHole Inversed
@@ -1612,7 +1616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3747507604713954765, guid: 546444b3991184f4d90727de70429f27, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3747507604713954765, guid: 546444b3991184f4d90727de70429f27, type: 3}
       propertyPath: m_LocalPosition.y

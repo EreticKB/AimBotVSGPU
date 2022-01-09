@@ -6,9 +6,18 @@ public class FollowerBehaviour : MonoBehaviour, IFollower
     public bool IsPositionFollowed;
     public PlayerBehaviour Player;
     private Follow _follow;
-    private bool _isFollow = true;
-    
-    public string MyName;
+    private bool _isFollow;
+    public bool IsFollow
+    {
+        get => _isFollow;
+        set => _isFollow = value;
+    }
+    [SerializeField] private string MyName;
+    public string Name
+    {
+        get => MyName;
+        set => MyName = value;
+    }
     private void Awake()
     {
         _follow = new Follow(transform, Offset, IsPositionFollowed);
@@ -18,20 +27,5 @@ public class FollowerBehaviour : MonoBehaviour, IFollower
     public void TakeMyPosition(Vector3 vector)
     {
         _follow.UpdatePosition(vector);
-    }
-
-    public bool stopFollow()
-    {
-        return _isFollow = false;
-    }
-
-    public bool starFollow()
-    {
-        return _isFollow = true;
-    }
-
-    public string Name()
-    {
-        return MyName;
     }
 }

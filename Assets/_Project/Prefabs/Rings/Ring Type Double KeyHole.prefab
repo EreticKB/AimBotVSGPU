@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 901202825291507487, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1203449635315816093, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -63,9 +67,37 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3556059405467953651, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216209200156281478, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010092645220542213, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5028120924579926805, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
       propertyPath: m_Name
       value: Segment 85_55_120 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123392178740503900, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6780206183291267379, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8410458636333096839, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9111520579937809886, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
@@ -77,6 +109,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 7813995545442853406}
     m_Modifications:
     - target: {fileID: 316134905513851370, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 901202825291507487, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
@@ -132,9 +168,37 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3556059405467953651, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216209200156281478, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010092645220542213, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5028120924579926805, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
       propertyPath: m_Name
       value: Segment 85_55_120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123392178740503900, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6780206183291267379, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8410458636333096839, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9111520579937809886, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 979f4374610a9984c8d34320aa27a79b, type: 3}
@@ -145,6 +209,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4192611886034057324, guid: a1a7242b4b0cc4c4aa043e8cdc2daa4e, type: 3}
+      propertyPath: _difficulty
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3016074636768901912, guid: a1a7242b4b0cc4c4aa043e8cdc2daa4e, type: 3}
       propertyPath: m_Name
       value: Ring Type Double KeyHole
@@ -195,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4529917286830610382, guid: a1a7242b4b0cc4c4aa043e8cdc2daa4e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5406765970475779806, guid: a1a7242b4b0cc4c4aa043e8cdc2daa4e, type: 3}
       propertyPath: m_Mesh

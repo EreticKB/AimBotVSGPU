@@ -51,11 +51,39 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 975188275353091663, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029229740388873597, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1394965567083398551, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
       propertyPath: m_Name
       value: Ring Type KeyHole Inversed
       objectReference: {fileID: 0}
+    - target: {fileID: 2160927928736880499, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2696547557789912424, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976621699772252233, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102751545217485691, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141173843483772944, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243437621148475975, guid: 844d0610b3c6dd246bb29e0f96e081b9, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}

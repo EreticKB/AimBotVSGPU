@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RingPassed : MonoBehaviour
 {
-    private Ring _ring;
+    private RingCollectionHandler _ring;
 
     private void Awake()
     {
-        _ring = GetComponent<Ring>();
+        _ring = GetComponent<RingCollectionHandler>();
     }
     private void OnTriggerEnter(Collider other)
     {
-        _ring.DestroyMe();
+        _ring.DisableRings();
     }
 }

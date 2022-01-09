@@ -19,7 +19,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.anyKey) _strafe.Update();
         for (int i = 0; i <= _followersIndex; i++) _followers[i].TakeMyPosition(_transform.position);
-        
     }
 
     public void AddFollower(IFollower follower)
@@ -34,19 +33,19 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(getFollowerByName("ShipCamera"));
+        Debug.Log($"{getFollowerByName("ShipCamera")} crash...");
     }
 
     private void enableFollowByName(string name, bool set)
     {
-        
+        _followers[getFollowerByName(name)].IsFollow = set;
     }
 
     private int getFollowerByName(string name)
     {
         foreach (IFollower follower in _followers)
         {
-            if (follower.Name().Equals(name)) return _followers.IndexOf(follower);
+            if (follower.Name.Equals(name)) return _followers.IndexOf(follower);
 
         }
         return -1;

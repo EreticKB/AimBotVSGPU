@@ -25,8 +25,8 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: f531e09e2ad2fb440b4eed7605863143, type: 2}
+  m_SubtractiveShadowColor: {r: 0.3679245, g: 0.15792987, b: 0.15792987, a: 1}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.024703188, g: 0.16863242, b: 0.24012068, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25784cd811c5a1a4dac25ddf79eabefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StrafeSpeed: 1.5
+  StrafeSpeed: 2
   FieldRadius: 150
 --- !u!54 &862657819
 Rigidbody:
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d529d216cf3204c87e3f51bc02c03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
+  Speed: 400
 --- !u!82 &862657823
 AudioSource:
   m_ObjectHideFlags: 0
@@ -805,8 +805,8 @@ Camera:
   m_GameObject: {fileID: 915862382}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -820,7 +820,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1200
+  far clip plane: 2000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -913,7 +913,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 1500
   field of view: 37.641304
   orthographic: 0
   orthographic size: 5
@@ -994,6 +994,7 @@ MonoBehaviour:
   Offset: {x: 0, y: 0, z: 0}
   IsPositionFollowed: 0
   Player: {fileID: 862657818}
+  _isFollow: 0
   MyName: 
 --- !u!43 &1002167166
 Mesh:
@@ -6489,10 +6490,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ebd1f5fa47a7d479518423e82ab1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 0, z: 900}
+  Offset: {x: 0, y: 0, z: 1500}
   IsPositionFollowed: 0
   Player: {fileID: 862657818}
-  MyName: 
+  _isFollow: 1
+  MyName: WarpTunnel
 --- !u!199 &1799208349
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -6642,7 +6644,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -7187,7 +7189,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 8
-    angle: 10
+    angle: 5
     length: 30
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0.1
@@ -8012,8 +8014,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0
+          time: 0.03491974
+          value: -1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -8022,7 +8024,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0
+          value: -1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -8066,7 +8068,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: -1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -8075,7 +8077,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0
+          value: -1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -8118,17 +8120,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.9777894
-          value: -1
+          time: 1
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -11297,7 +11290,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818398342}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

@@ -127,7 +127,7 @@ public static class BendingShaderController
     //===============================================================
     public static void SetBendingEnable(Material material, bool value)
     {
-        if (value) material.EnableKeyword("_ENABLEBENDING");
-        else material.DisableKeyword("_ENABLEBENDING");
+        if (value) material.EnableKeyword("BOOLEAN_ENABLEBENDING_ON");
+        else material.DisableKeyword("BOOLEAN_ENABLEBENDING_ON");
     }
 }

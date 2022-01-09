@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RingPassed : MonoBehaviour
@@ -12,6 +10,7 @@ public class RingPassed : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        //_ring.RingWasPassed();
         _ring.DisableRings();
     }
 }

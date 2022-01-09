@@ -4,35 +4,33 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     public GameObject RingPrefab;
-    private int _poolSize = 6;
-    private List<GameObject> _ring;
+    private int _poolSize = 10;
+    //private List<GameObject> _ring;
     private List<RingCollectionHandler> _ringScript;
-
+    private Loop _loop;
 
     private void Awake()
     {
-        _ring = new List<GameObject>(_poolSize);
+        _loop = new Loop(_poolSize-1,_poolSize,0);
+        //_ring = new List<GameObject>(_poolSize);
         _ringScript = new List<RingCollectionHandler>(_poolSize);
         for (int i = 0; i < _poolSize; i++)
         {
-            _ring.Add(Instantiate(RingPrefab, transform));
-            _ringScript.Add(_ring[i].GetComponent<RingCollectionHandler>());
-            _ring[i].SetActive(false);
+            _ringScript.Add(Instantiate(RingPrefab, new Vector3(0,0,0), Quaternion.Euler(0,0,0), transform).GetComponent<RingCollectionHandler>());
+            _ringScript[i].LevelScript = this;
         }
     }
     private void Start()
     {
         for (int i = 0; i < _poolSize; i++)
         {
-            _ringScript[i].Transform.position = new Vector3(0,0,300*(i+1));
-            _ringScript[i].Transform.rotation = Quaternion.Euler(0,0,Random.Range(0f,360f));
-            _ring[i].SetActive(true);
-            _ringScript[i].EnableRing(3, 2);
+            //_ring[i].SetActive(true);
+            _ringScript[i].EnableRing(0, 2, new Vector3(0, 0, 200 * (i + 1)));
         }
     }
 
-    private void Update()
+    public void MoveRingToNextPosition()
     {
-        
+        _ringScript[_loop.Next()].EnableRing(0, 2, new Vector3(0, 0, 200 * _poolSize));
     }
 }

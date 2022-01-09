@@ -1201,7 +1201,7 @@
     },
     "m_Name": "Enable Bending",
     "m_DefaultReferenceName": "BOOLEAN_08931F2476CF49149D79C3020E57729A_ON",
-    "m_OverrideReferenceName": "_ENABLEBENDING",
+    "m_OverrideReferenceName": "BOOLEAN_ENABLEBENDING_ON",
     "m_GeneratePropertyBlock": true,
     "m_KeywordType": 0,
     "m_KeywordDefinition": 0,
@@ -3340,8 +3340,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -539.0,
-            "y": -701.0,
+            "x": -495.0,
+            "y": -620.0,
             "width": 208.0,
             "height": 301.9999694824219
         }

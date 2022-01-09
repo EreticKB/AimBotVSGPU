@@ -3,7 +3,6 @@ using UnityEngine;
 public class Ring : MonoBehaviour
 {
     private Transform _transform;
-    private GameObject _gameObject;
     private byte _ringDirection;
     private float _ringSpeed;
     private float _ringOffSet;

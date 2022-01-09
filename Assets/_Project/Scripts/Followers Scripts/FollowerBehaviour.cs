@@ -6,7 +6,7 @@ public class FollowerBehaviour : MonoBehaviour, IFollower
     public bool IsPositionFollowed;
     public PlayerBehaviour Player;
     private Follow _follow;
-    private bool _isFollow;
+    [SerializeField] private bool _isFollow;
     public bool IsFollow
     {
         get => _isFollow;
@@ -26,6 +26,7 @@ public class FollowerBehaviour : MonoBehaviour, IFollower
     }
     public void TakeMyPosition(Vector3 vector)
     {
+        if (!_isFollow) return;
         _follow.UpdatePosition(vector);
     }
 }

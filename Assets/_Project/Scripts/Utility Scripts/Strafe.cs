@@ -36,7 +36,7 @@ public class Strafe
     }
 
 
-    public void Update()
+    public Vector2 Update()
     {
         if (Input.GetKey(KeyCode.W)) _lerp = moveUp(_lerp, Speed);
         if (Input.GetKey(KeyCode.S)) _lerp = moveDown(_lerp, Speed);
@@ -46,6 +46,7 @@ public class Strafe
         _position.x = Mathf.LerpUnclamped(0, _fieldRadius, _lerp.x);
         _position.y = Mathf.LerpUnclamped(0, _fieldRadius, _lerp.y);
         _transform.position = _position;
+        return _lerp;
     }
 
     private Vector2 moveUp(Vector2 lerp, float speed)

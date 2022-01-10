@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tube
-  m_Shader: {fileID: -6465566751694194690, guid: f89fef975e1379f4294dce6ae558a382, type: 3}
+  m_Name: Exit Distortion
+  m_Shader: {fileID: -6465566751694194690, guid: 8883c2b524cd4ba4e8ef7b9c450ac502, type: 3}
   m_ShaderKeywords: BOOLEAN_08931F2476CF49149D79C3020E57729A_ON BOOLEAN_ENABLEBENDING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,18 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_5caa6f08ba5e472ebb05e54cd5a36588:
-        m_Texture: {fileID: 2800000, guid: d72611aa5c8088f4eb634a6f1178acd5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_7a24081ab1ed47ac9b67409e5b7ff18d:
-        m_Texture: {fileID: 2800000, guid: 12dee78e6b4fc644fb75f9d19b8b9ba8, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_f1d4fcbd720c48988ebf95fdb6fbba05:
-        m_Texture: {fileID: 2800000, guid: 2d0a4c78ea142244cbf9957397b75d7a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -84,7 +72,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a7d3850f06298044fb6fc565215ad96e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -102,11 +90,9 @@ Material:
     m_Floats:
     - BOOLEAN_08931F2476CF49149D79C3020E57729A: 1
     - BOOLEAN_ENABLEBENDING: 1
-    - Vector1_6427af6810e34e09b5be168c3fa59131: 0.448
-    - Vector1_8196d1295b5f455196713d9b147b8de8: 0
-    - Vector1_faa85aedcd6e4cdbb5a5f93a01145667: 0
+    - Vector1_ef25c7d58fcf4269a8e3d680e43d3e93: 0.1
     - _AlphaClip: 0
-    - _Alpha_Clip: 0.329
+    - _Alpha_Clip: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -116,36 +102,42 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmissionIntensity: 1.81
+    - _EmissionIntensity: 0
     - _EnvironmentReflections: 1
+    - _Fill: 5
+    - _FresnelPower: 5
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HorizontalAmount: -0.001
-    - _Metallic: 1
+    - _HorizontalAmount: -0
+    - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PositionOffSet: 0
+    - _PositionOffSet: -300
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 1
+    - _Smoothness: 0.449
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 0.1
     - _SrcBlend: 1
     - _Surface: 0
-    - _VerticalAmount: -0.001
+    - _VerticalAmount: -0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Vector2_5a0b749a7b064986bea9f634e1bf4335: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_169b0e6a660745748e0befcb21176d1b: {r: 2, g: -1.4, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DistortionPower: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OffSet: {r: 0, g: 0, b: 0, a: 0}
+    - _FresnelColor: {r: 0, g: 0, b: 0, a: 0}
+    - _OffSet: {r: -0.15, g: -0.38, b: 0, a: 0}
+    - _Shape: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _Tiling: {r: 1, g: 2, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &1002504896025451878
+--- !u!114 &548547827187075604
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -109,11 +109,11 @@ Material:
     - _FlipbookBlending: 0
     - _FlipbookMode: 0
     - _Glossiness: 0
-    - _HorizontalAmount: -0.0005
+    - _HorizontalAmount: -0
     - _InvFade: 1
     - _Metallic: 0
     - _Mode: 0
-    - _PositionOffSet: 0
+    - _PositionOffSet: -300
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -122,7 +122,7 @@ Material:
     - _SoftParticlesNearFadeDistance: 0
     - _SrcBlend: 1
     - _Surface: 0
-    - _VerticalAmount: -0.0005
+    - _VerticalAmount: -0
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

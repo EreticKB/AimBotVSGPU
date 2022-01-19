@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    public bl_Joystick Testjoy;
     private Strafe _strafe;
     private List<IFollower> _followers = new List<IFollower>();
     private int _followersIndex = -1;
@@ -19,7 +20,7 @@ public class PlayerBehaviour : MonoBehaviour
             BendMaterial(Materials[i], 0f, 0f, Vector2.zero); ;
         }
         _transform = transform;
-        _strafe = new Strafe(_transform, StrafeSpeed, FieldRadius);
+        _strafe = new Strafe(_transform, StrafeSpeed, FieldRadius, Testjoy);
         _loop = new Loop(0, 100, 10);
         _lerp = new Vector2[100];
     }

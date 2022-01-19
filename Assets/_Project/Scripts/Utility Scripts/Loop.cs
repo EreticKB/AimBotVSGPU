@@ -1,7 +1,7 @@
 ﻿
 using System;
 using UnityEngine;
-
+//Класс для возможности бесконечного смещения по индексу ограниченной длины.
 class Loop
 {
     private int _index;

@@ -21,5 +21,10 @@ public class Fly : MonoBehaviour
         _currentSpeed.z = stop ? Speed : 0;
         _rigidbody.velocity = _currentSpeed;
     }
+
+    public void TestShipStart()
+    {
+        stop = stop ? false : true;
+    }
     
 }

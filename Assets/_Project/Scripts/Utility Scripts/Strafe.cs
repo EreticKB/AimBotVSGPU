@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Strafe
 {
+    private bl_Joystick _joy;
     private float _speed;
     public float Speed
     {
@@ -28,25 +30,39 @@ public class Strafe
     private Vector2 _lerp = new Vector2(0f, 0f);
     private static Vector3 _position;
 
-    public Strafe(Transform transform, float speed, float fieldRadius)
+    public Strafe(Transform transform, float speed, float fieldRadius, bl_Joystick joy)
     {
         _transform = transform;
         Speed = speed;
         FieldRadius = fieldRadius;
+        _joy = joy;
     }
 
 
     public Vector2 Update()
     {
-        if (Input.GetKey(KeyCode.W)) _lerp = moveUp(_lerp, Speed);
-        if (Input.GetKey(KeyCode.S)) _lerp = moveDown(_lerp, Speed);
+        if (Input.GetKey(KeyCode.W)) _lerp = moveDown(_lerp, Speed);
+        if (Input.GetKey(KeyCode.S)) _lerp = moveUp(_lerp, Speed);
         if (Input.GetKey(KeyCode.A)) _lerp = moveLeft(_lerp, Speed);
         if (Input.GetKey(KeyCode.D)) _lerp = moveRight(_lerp, Speed);
+        if (_joy.isActiveAndEnabled)
+        {
+            if (Input.anyKey) _lerp = moveByJoy(_lerp, Speed);
+        }
         _position = _transform.position;
         _position.x = Mathf.LerpUnclamped(0, _fieldRadius, _lerp.x);
         _position.y = Mathf.LerpUnclamped(0, _fieldRadius, _lerp.y);
         _transform.position = _position;
         return _lerp;
+    }
+
+    private Vector2 moveByJoy(Vector2 lerp, float speed)
+    {
+        if (_joy.Horizontal > .5f) return moveRight(lerp, speed);
+        if (_joy.Horizontal < -.5f) return moveLeft(lerp, speed);
+        if (_joy.Vertical > .5f) return moveUp(lerp, speed);
+        if (_joy.Vertical < -.5f) return moveDown(lerp, speed);
+        return lerp;
     }
 
     private Vector2 moveUp(Vector2 lerp, float speed)

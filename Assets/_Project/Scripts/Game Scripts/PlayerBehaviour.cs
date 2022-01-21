@@ -6,7 +6,6 @@ public class PlayerBehaviour : MonoBehaviour
 {
     //test
     public AttitudeCheck check;
-    //test
     public Text Text;
     private bool _testValueForTiltEnable = false;
     public bool TestValueForTiltEnable
@@ -18,6 +17,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
     public bl_Joystick Testjoy;
+    //test
     private Strafe _strafe;
     private List<IFollower> _followers = new List<IFollower>();
     private int _followersIndex = -1;
@@ -42,6 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
+        Text.text = _testValueForTiltEnable ? "Enabled" : "Disabled";
         for (int i = 0; i <= _followersIndex; i++) _followers[i].TakeMyPosition(_transform.position);
 
         int offSet;
@@ -58,7 +59,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             BendMaterial(Materials[i], 0f, 0.0005f, _lerp[offSet]); ;
         }
-        Text.text = _testValueForTiltEnable ? "Enabled" : "Disabled";
+
     }
 
     public void AddFollower(IFollower follower)

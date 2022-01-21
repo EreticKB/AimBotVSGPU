@@ -71,10 +71,11 @@ public class Strafe
         
         _lerp.x = Mathf.Lerp(_lerp.x, tiltingX.x * _correction, Speed * Time.deltaTime);
         _lerp.y = Mathf.Lerp(_lerp.y, tiltingY.x * _correction, Speed * Time.deltaTime);
+        if (_lerp.sqrMagnitude > 1) _lerp = _lerp.normalized;
         //[тестовая передача данных]
         check.x = _lerp;
         check.y = tiltingY;
-        check.UpdateData();
+        if (check.isActiveAndEnabled) check.UpdateData();
         //[/тестовая передача данных]
         MoveTransformByLerp(_lerp);
         

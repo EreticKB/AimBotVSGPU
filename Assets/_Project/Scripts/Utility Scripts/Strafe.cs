@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class Strafe
 {
+    public AttitudeCheck check;
+    //Используются для ограничения требуемого угла наклона для смещения корабля в крайнее положение.
+
+    private float _clamp;
+    private float _correction;
+    //====
     private bl_Joystick _joy;
     private float _speed;
     public float Speed
@@ -28,7 +34,7 @@ public class Strafe
     }
     private Transform _transform;
     private Vector2 _lerp = new Vector2(0f, 0f);
-    private static Vector3 _position;
+    private Vector3 _position;
 
     public Strafe(Transform transform, float speed, float fieldRadius, bl_Joystick joy)
     {
@@ -36,10 +42,12 @@ public class Strafe
         Speed = speed;
         FieldRadius = fieldRadius;
         _joy = joy;
+        _clamp = 0.2f;
+        _correction = 1 / _clamp;
     }
 
 
-    public Vector2 Update()
+    public Vector2 UpdateFromKey()
     {
         if (Input.GetKey(KeyCode.W)) _lerp = moveDown(_lerp, Speed);
         if (Input.GetKey(KeyCode.S)) _lerp = moveUp(_lerp, Speed);
@@ -49,11 +57,36 @@ public class Strafe
         {
             if (Input.anyKey) _lerp = moveByJoy(_lerp, Speed);
         }
-        _position = _transform.position;
-        _position.x = Mathf.LerpUnclamped(0, _fieldRadius, _lerp.x);
-        _position.y = Mathf.LerpUnclamped(0, _fieldRadius, _lerp.y);
-        _transform.position = _position;
+        MoveTransformByLerp(_lerp);
         return _lerp;
+    }
+
+    public Vector2 UpdateFromTilting()
+    {
+        Vector3 tilting = Input.acceleration;
+        Vector2 tiltingX = new Vector2(tilting.x, tilting.z);
+        Vector2 tiltingY = new Vector2(tilting.y, tilting.z);
+        tiltingX.x = Mathf.Clamp(tiltingX.x, -_clamp, _clamp);
+        tiltingY.x = Mathf.Clamp(tiltingY.x, -_clamp, _clamp);
+        
+        _lerp.x = Mathf.Lerp(_lerp.x, tiltingX.x * _correction, Speed * Time.deltaTime);
+        _lerp.y = Mathf.Lerp(_lerp.y, tiltingY.x * _correction, Speed * Time.deltaTime);
+        //[тестовая передача данных]
+        check.x = _lerp;
+        check.y = tiltingY;
+        check.UpdateData();
+        //[/тестовая передача данных]
+        MoveTransformByLerp(_lerp);
+        
+        return _lerp;
+    }
+
+    private void MoveTransformByLerp(Vector2 lerp)
+    {
+        Vector3 position = _transform.position;
+        position.x = Mathf.LerpUnclamped(0, _fieldRadius, lerp.x);
+        position.y = Mathf.LerpUnclamped(0, _fieldRadius, lerp.y);
+        _transform.position = position;
     }
 
     private Vector2 moveByJoy(Vector2 lerp, float speed)

@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class Strafe
 {
+    //test
     public AttitudeCheck check;
+    //test
     //Используются для ограничения требуемого угла наклона для смещения корабля в крайнее положение.
 
     private float _clamp;
@@ -61,9 +63,11 @@ public class Strafe
         return _lerp;
     }
 
-    public Vector2 UpdateFromTilting()
+    public Vector2 UpdateFromTilting(Quaternion testTilt)
     {
         Vector3 tilting = Input.acceleration;
+        tilting = testTilt * tilting;
+        check.Tilt = tilting;
         Vector2 tiltingX = new Vector2(tilting.x, tilting.z);
         Vector2 tiltingY = new Vector2(tilting.y, tilting.z);
         tiltingX.x = Mathf.Clamp(tiltingX.x, -_clamp, _clamp);

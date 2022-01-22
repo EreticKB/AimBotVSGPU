@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PlayerBehaviour : MonoBehaviour
 {
     //test
+    public Quaternion TestTiltOffset = Quaternion.Euler(0,0,0);
     public AttitudeCheck check;
     public Text Text;
     private bool _testValueForTiltEnable = false;
@@ -53,7 +54,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else
         {
-            _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromTilting();
+            _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromTilting(TestTiltOffset);
         }
         for (int i = 0; i < Materials.Length; i++)
         {
@@ -96,5 +97,18 @@ public class PlayerBehaviour : MonoBehaviour
     {       
         BendingShaderController.TrySetHorizontalBending(material, -Mathf.LerpUnclamped(minLimit, maxLimit, bend.x));
         BendingShaderController.TrySetVerticalBending(material, -Mathf.LerpUnclamped(minLimit, maxLimit, bend.y));
+    }
+
+    public void TestCalibrate()
+    {
+        Vector3 testIn = Input.acceleration;
+        float tempX = testIn.x;
+        float tempZ = testIn.z;
+        testIn.x = -Mathf.Asin(testIn.y) * Mathf.Rad2Deg;
+        testIn.y = Mathf.Asin(tempX) * Mathf.Rad2Deg;
+        testIn.z = 0;
+        TestTiltOffset = Quaternion.Euler(testIn);
+        check._orientation = testIn;
+        if (tempZ >= 0 ) TestTiltOffset.w = -TestTiltOffset.w;
     }
 }

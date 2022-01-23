@@ -1240,6 +1240,7 @@ GameObject:
   - component: {fileID: 202608469}
   - component: {fileID: 202608471}
   - component: {fileID: 202608470}
+  - component: {fileID: 202608472}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -1304,6 +1305,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202608468}
   m_CullTransparentMesh: 1
+--- !u!114 &202608472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202608468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86657464100e946468c684c10b84fe10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _point: {fileID: 202608469}
+  _radius: 220
+  _speed: 100
 --- !u!1 &217433812
 GameObject:
   m_ObjectHideFlags: 0
@@ -3400,6 +3416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 775412384}
   - component: {fileID: 775412385}
+  - component: {fileID: 775412386}
   m_Layer: 5
   m_Name: Volume
   m_TagString: Untagged
@@ -3475,24 +3492,37 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2044264380}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 3
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1845987763}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 775412386}
+        m_TargetAssemblyTypeName: GlobalVolume, Assembly-CSharp
+        m_MethodName: VolumeUpdate
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &775412386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775412383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426da366261fb054b9bab708dafd36d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Volume: {fileID: 775412385}
 --- !u!1 &811547969
 GameObject:
   m_ObjectHideFlags: 0
@@ -4468,6 +4498,7 @@ GameObject:
   - component: {fileID: 1000524412}
   - component: {fileID: 1000524411}
   - component: {fileID: 1000524410}
+  - component: {fileID: 1000524413}
   m_Layer: 5
   m_Name: Calibrate
   m_TagString: Untagged
@@ -4539,9 +4570,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1845987768}
+      - m_Target: {fileID: 1000524413}
         m_TargetAssemblyTypeName: SettingsMenuController, Assembly-CSharp
-        m_MethodName: CalibrateTilt
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4589,6 +4620,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000524408}
   m_CullTransparentMesh: 1
+--- !u!114 &1000524413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000524408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ee2bc9dad29c2458580d381fac66f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1002167166
 Mesh:
   m_ObjectHideFlags: 0
@@ -18529,10 +18572,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsChangeNeeded: 0
   NextMenuIndex: 0
-  _point: {fileID: 202608469}
-  _radius: 220
-  _speed: 100
-  _sensitivity: {fileID: 1016521523}
 --- !u!1 &1862400400
 GameObject:
   m_ObjectHideFlags: 0

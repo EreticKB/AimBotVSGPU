@@ -1,32 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    //test
-    public Quaternion TestTiltOffset = Quaternion.Euler(0,0,0);
-    public AttitudeCheck check;
-    public Text Text;
-    private bool _testValueForTiltEnable = false;
-    public bool TestValueForTiltEnable
+    private bool _isTiltEnabled = false;
+    public bool GetTiltStatus()
     {
-        get => _testValueForTiltEnable;
-        set
-        {
-            _testValueForTiltEnable = _testValueForTiltEnable ? false : true;
-        }
+        int state = PlayerPrefs.GetInt(Game.IndexTiltActivation, 1);
+        return state == 1 ? true : false;
     }
-    public bl_Joystick Testjoy;
-    //test
+    public bl_Joystick JoyStick; //стик для любителей садомазо со стиками
     private Strafe _strafe;
-    private List<IFollower> _followers = new List<IFollower>();
-    private int _followersIndex = -1;
+    private float _sensitivity
+    {
+        get => PlayerPrefs.GetFloat(Game.IndexControlSensitivity, 0.2f);
+        set => PlayerPrefs.SetFloat(Game.IndexControlSensitivity, value);
+    }
+
+    private List<IFollower> _followers = new List<IFollower>();//больше для практики шаблона, чем по необходимости, т.к. камеру оказалось проще прикрепить к игроку и сейчас используется только для 
+    private int _followersIndex = -1;//того, чтобы держать "точку выхода" на постоянном удалении.
     private Transform _transform;
     public float StrafeSpeed;
     public float FieldRadius;
-    public Material[] Materials;
-    private Vector2[] _lerp;
+    public Material[] Materials; //массив используемых в препятствиях и точке выхода материалов, позволяющий контроллируемо "искажать" туннель.
+    private Vector2[] _lerp; //массив для хранения векторов Strafe._lerp. Используется для управления смещением "точки выхода" в отдалении от игрока.
     private Loop _loop;
     private void Awake()
     {
@@ -35,26 +32,24 @@ public class PlayerBehaviour : MonoBehaviour
             BendMaterial(Materials[i], 0f, 0f, Vector2.zero); ;
         }
         _transform = transform;
-        _strafe = new Strafe(_transform, StrafeSpeed, FieldRadius, Testjoy);
+        _strafe = new Strafe(_transform, StrafeSpeed, FieldRadius, JoyStick, _sensitivity);
         _loop = new Loop(0, 100, 10);
         _lerp = new Vector2[100];
-        _strafe.check = check;
     }
 
     private void Update()
     {
-        Text.text = _testValueForTiltEnable ? "Enabled" : "Disabled";
         for (int i = 0; i <= _followersIndex; i++) _followers[i].TakeMyPosition(_transform.position);
 
         int offSet;
-        if (!_testValueForTiltEnable)
+        if (!_isTiltEnabled)
         {
             if (Input.anyKey) _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromKey();
             else return;
         }
         else
         {
-            _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromTilting(TestTiltOffset);
+            _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromTilting(Game.TiltOffSet);
         }
         for (int i = 0; i < Materials.Length; i++)
         {
@@ -94,21 +89,8 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     private void BendMaterial(Material material, float minLimit, float maxLimit, Vector2 bend)
-    {       
+    {
         BendingShaderController.TrySetHorizontalBending(material, -Mathf.LerpUnclamped(minLimit, maxLimit, bend.x));
         BendingShaderController.TrySetVerticalBending(material, -Mathf.LerpUnclamped(minLimit, maxLimit, bend.y));
-    }
-
-    public void TestCalibrate()
-    {
-        Vector3 testIn = Input.acceleration;
-        float tempX = testIn.x;
-        float tempZ = testIn.z;
-        testIn.x = -Mathf.Asin(testIn.y) * Mathf.Rad2Deg;
-        testIn.y = Mathf.Asin(tempX) * Mathf.Rad2Deg;
-        testIn.z = 0;
-        TestTiltOffset = Quaternion.Euler(testIn);
-        check._orientation = testIn;
-        if (tempZ >= 0 ) TestTiltOffset.w = -TestTiltOffset.w;
     }
 }

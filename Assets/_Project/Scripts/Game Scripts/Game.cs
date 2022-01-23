@@ -1,8 +1,11 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class Game : MonoBehaviour
 {
+    public static readonly string IndexGameVolume = "GameVolume";
+    public static readonly string IndexControlSensitivity = "ControlSensitivity";
+    public static readonly string IndexTiltActivation = "TiltActivation";
     [SerializeField] CanvasController CanvasRoot;
     public static Quaternion TiltOffSet = new Quaternion();
     public static Quaternion SavedTiltOffSet //я знаю, что можно просто конвертировать юнити кватернион в сериализуемый кватернион, но буду делать если останется время.
@@ -10,6 +13,9 @@ public class Game : MonoBehaviour
         get
         {
             Quaternion quaternion = new Quaternion();
+            //SaveHandler.LoadProperty("TiltQuaternionX", out quaternion.x);
+
+
             quaternion.x = PlayerPrefs.GetFloat("TiltQuaternionX", Quaternion.Euler(0, 0, 0).x);
             quaternion.y = PlayerPrefs.GetFloat("TiltQuaternionY", Quaternion.Euler(0, 0, 0).y);
             quaternion.z = PlayerPrefs.GetFloat("TiltQuaternionZ", Quaternion.Euler(0, 0, 0).z);

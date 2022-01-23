@@ -1,5 +1,5 @@
 using UnityEngine;
-
+//Класс управляет параметрами шейдера переданного в него материала. Класс написан под Bending и частично TransparentBendingFresnel(в области пересечения их функционала).
 public static class BendingShaderController
 {
     static readonly int _tiling = Shader.PropertyToID("_Tiling");

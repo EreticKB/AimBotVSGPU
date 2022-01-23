@@ -22,8 +22,7 @@ public class MapPosition : MonoBehaviour
 
     private static float _loadSensitivity()
     {
-        float value;
-        SaveHandler.LoadProperty(Game.IndexControlSensitivity, out value);
+        SaveHandler.LoadProperty(Game.IndexControlSensitivity, out float value, 0.2f);
         return value;
     }
 }

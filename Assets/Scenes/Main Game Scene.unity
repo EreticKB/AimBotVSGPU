@@ -3635,10 +3635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25784cd811c5a1a4dac25ddf79eabefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestTiltOffset: {x: 0, y: 0, z: 0, w: 1}
-  check: {fileID: 1949320751}
-  Text: {fileID: 1028858204}
-  Testjoy: {fileID: 897951400}
+  JoyStick: {fileID: 0}
   StrafeSpeed: 2.5
   FieldRadius: 150
   Materials:
@@ -3807,17 +3804,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 22406132, guid: 7973d81b61b491640b7a0d00c9de83d3, type: 3}
   m_PrefabInstance: {fileID: 1595665242}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &897951400 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11467636, guid: 7973d81b61b491640b7a0d00c9de83d3, type: 3}
-  m_PrefabInstance: {fileID: 1595665242}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77624f28614e33247a9ad124a2d27f78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &915862382
 GameObject:
   m_ObjectHideFlags: 0
@@ -4806,6 +4792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1016521522}
   - component: {fileID: 1016521523}
+  - component: {fileID: 1016521524}
   m_Layer: 5
   m_Name: Sensitivity
   m_TagString: Untagged
@@ -4887,9 +4874,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1845987768}
+      - m_Target: {fileID: 1016521524}
         m_TargetAssemblyTypeName: SettingsMenuController, Assembly-CSharp
-        m_MethodName: ChangeSensitivity
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4899,6 +4886,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1016521524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016521521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e0614f1a961cb48a3cfd7e286878ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sensitivity: {fileID: 1016521523}
 --- !u!1 &1025482079
 GameObject:
   m_ObjectHideFlags: 0

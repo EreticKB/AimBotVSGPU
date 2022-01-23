@@ -6,16 +6,12 @@ public class PlayerBehaviour : MonoBehaviour
     private bool _isTiltEnabled = false;
     public bool GetTiltStatus()
     {
-        int state = PlayerPrefs.GetInt(Game.IndexTiltActivation, 1);
+        SaveHandler.LoadProperty(Game.IndexTiltActivation, out int state, 1);
         return state == 1 ? true : false;
     }
     public bl_Joystick JoyStick; //стик для любителей садомазо со стиками
     private Strafe _strafe;
-    private float _sensitivity
-    {
-        get => PlayerPrefs.GetFloat(Game.IndexControlSensitivity, 0.2f);
-        set => PlayerPrefs.SetFloat(Game.IndexControlSensitivity, value);
-    }
+    
 
     private List<IFollower> _followers = new List<IFollower>();//больше для практики шаблона, чем по необходимости, т.к. камеру оказалось проще прикрепить к игроку и сейчас используется только для 
     private int _followersIndex = -1;//того, чтобы держать "точку выхода" на постоянном удалении.
@@ -31,8 +27,9 @@ public class PlayerBehaviour : MonoBehaviour
         {
             BendMaterial(Materials[i], 0f, 0f, Vector2.zero); ;
         }
-        _transform = transform;
-        _strafe = new Strafe(_transform, StrafeSpeed, FieldRadius, JoyStick, _sensitivity);
+        _transform = transform;        
+        SaveHandler.LoadProperty(Game.IndexControlSensitivity, out float sensitivity, 0.2f);
+        _strafe = new Strafe(_transform, StrafeSpeed, FieldRadius, JoyStick, sensitivity);
         _loop = new Loop(0, 100, 10);
         _lerp = new Vector2[100];
     }

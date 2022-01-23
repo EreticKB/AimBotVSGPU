@@ -1,6 +1,5 @@
 using UnityEngine;
-
-
+//ќбщий класс, хран€щий наиболее глобальные параметры и управл€ющий основным игровым процессом.
 public class Game : MonoBehaviour
 {
     public static readonly string IndexGameVolume = "GameVolume";
@@ -13,21 +12,18 @@ public class Game : MonoBehaviour
         get
         {
             Quaternion quaternion = new Quaternion();
-            //SaveHandler.LoadProperty("TiltQuaternionX", out quaternion.x);
-
-
-            quaternion.x = PlayerPrefs.GetFloat("TiltQuaternionX", Quaternion.Euler(0, 0, 0).x);
-            quaternion.y = PlayerPrefs.GetFloat("TiltQuaternionY", Quaternion.Euler(0, 0, 0).y);
-            quaternion.z = PlayerPrefs.GetFloat("TiltQuaternionZ", Quaternion.Euler(0, 0, 0).z);
-            quaternion.w = PlayerPrefs.GetFloat("TiltQuaternionW", Quaternion.Euler(0, 0, 0).w);
+            SaveHandler.LoadProperty("TiltQuaternionX", out quaternion.x, Quaternion.Euler(0, 0, 0).x);
+            SaveHandler.LoadProperty("TiltQuaternionY", out quaternion.y, Quaternion.Euler(0, 0, 0).y);
+            SaveHandler.LoadProperty("TiltQuaternionZ", out quaternion.z, Quaternion.Euler(0, 0, 0).z);
+            SaveHandler.LoadProperty("TiltQuaternionW", out quaternion.w, Quaternion.Euler(0, 0, 0).w);
             return quaternion;
         }
         set
         {
-            PlayerPrefs.SetFloat("TiltQuaternionX", value.x);
-            PlayerPrefs.SetFloat("TiltQuaternionY", value.y);
-            PlayerPrefs.SetFloat("TiltQuaternionZ", value.z);
-            PlayerPrefs.SetFloat("TiltQuaternionW", value.w);
+            SaveHandler.SaveProperty("TiltQuaternionX", value.x);
+            SaveHandler.SaveProperty("TiltQuaternionY", value.y);
+            SaveHandler.SaveProperty("TiltQuaternionZ", value.z);
+            SaveHandler.SaveProperty("TiltQuaternionW", value.w);
             PlayerPrefs.Save();
         }
     }

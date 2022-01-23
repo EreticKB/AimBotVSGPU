@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 static class SaveHandler
+    //Класс создан для того, чтобы спокойно взаимодействовать с PlayerPrefs не задумываясь над типом передаваемых данных, что позволяет даже менять
+    //типы сохраняемых данных без изменения в обрабатывающем коде.
 {
     //============================================================
     public static void SaveProperty(string name, int value)
@@ -19,17 +21,31 @@ static class SaveHandler
         PlayerPrefs.Save();
     }
     //============================================================
+    public static void LoadProperty(string name, out int value, int defaultValue)
+    {
+        value = PlayerPrefs.GetInt(name, defaultValue);
+    }
     public static void LoadProperty(string name, out int value)
     {
-        value = PlayerPrefs.GetInt(name, 0);
+        LoadProperty(name, out value, 0);
+    }
+    //
+    public static void LoadProperty(string name, out float value, float defaultValue)
+    {
+        value = PlayerPrefs.GetFloat(name, defaultValue);
     }
     public static void LoadProperty(string name, out float value)
     {
-        value = PlayerPrefs.GetFloat(name, 0);
+        LoadProperty(name, out value, 0);
+    }
+    //
+    public static void LoadProperty(string name, out string value, string defaultValue)
+    {
+        value = PlayerPrefs.GetString(name, defaultValue);
     }
     public static void LoadProperty(string name, out string value)
     {
-        value = PlayerPrefs.GetString(name, "");
+        LoadProperty(name, out value, "");
     }
     //============================================================
 

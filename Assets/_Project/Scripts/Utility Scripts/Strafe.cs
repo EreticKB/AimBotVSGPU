@@ -36,7 +36,6 @@ public class Strafe
     }
     private Transform _transform;
     private Vector2 _lerp = new Vector2(0f, 0f);
-    private Vector3 _position;
 
     public Strafe(Transform transform, float speed, float fieldRadius, bl_Joystick joy)
     {
@@ -47,51 +46,70 @@ public class Strafe
         _clamp = 0.2f;
         _correction = 1 / _clamp;
     }
+    public Strafe(RectTransform transform, float speed, float fieldRadius)
+    {
+        _transform = transform;
+        Speed = speed;
+        FieldRadius = fieldRadius;
+        _joy = null;
+        _clamp = 0.2f;
+        _correction = 1 / _clamp;
+    }
+
+    public void ChangeSensitivity(float sensitivity)
+    {
+        _clamp = sensitivity;
+        _correction = 1 / _clamp;
+    }
 
 
     public Vector2 UpdateFromKey()
     {
+        //Блок управления с клавиатуры, оставляю для нужд тестирования и как бонус для тех, кто подключит клаву.(прикрутить включение режима)
         if (Input.GetKey(KeyCode.W)) _lerp = moveDown(_lerp, Speed);
         if (Input.GetKey(KeyCode.S)) _lerp = moveUp(_lerp, Speed);
         if (Input.GetKey(KeyCode.A)) _lerp = moveLeft(_lerp, Speed);
         if (Input.GetKey(KeyCode.D)) _lerp = moveRight(_lerp, Speed);
-        if (_joy.isActiveAndEnabled)
-        {
-            if (Input.anyKey) _lerp = moveByJoy(_lerp, Speed);
-        }
+        //=============================================
+        if (_joy != null) if (_joy.isActiveAndEnabled) if (Input.anyKey) _lerp = moveByJoy(_lerp, Speed);
         MoveTransformByLerp(_lerp);
         return _lerp;
     }
 
-    public Vector2 UpdateFromTilting(Quaternion testTilt)
+    public Vector2 UpdateFromTilting(Quaternion tiltOffSet)
     {
         Vector3 tilting = Input.acceleration;
-        tilting = testTilt * tilting;
-        check.Tilt = tilting;
-        Vector2 tiltingX = new Vector2(tilting.x, tilting.z);
+        tilting = tiltOffSet * tilting;
+        //check.Tilt = tilting; тестовый код, почистить потом
+        /*Vector2 tiltingX = new Vector2(tilting.x, tilting.z);
         Vector2 tiltingY = new Vector2(tilting.y, tilting.z);
         tiltingX.x = Mathf.Clamp(tiltingX.x, -_clamp, _clamp);
         tiltingY.x = Mathf.Clamp(tiltingY.x, -_clamp, _clamp);
-        
         _lerp.x = Mathf.Lerp(_lerp.x, tiltingX.x * _correction, Speed * Time.deltaTime);
         _lerp.y = Mathf.Lerp(_lerp.y, tiltingY.x * _correction, Speed * Time.deltaTime);
+        */
+        tilting.x = Mathf.Clamp(tilting.x, -_clamp, _clamp);
+        tilting.y = Mathf.Clamp(tilting.y, -_clamp, _clamp);
+        _lerp.x = Mathf.Lerp(_lerp.x, tilting.x * _correction, Speed * Time.deltaTime);
+        _lerp.y = Mathf.Lerp(_lerp.y, tilting.y * _correction, Speed * Time.deltaTime);
         if (_lerp.sqrMagnitude > 1) _lerp = _lerp.normalized;
         //[тестовая передача данных]
-        check.x = _lerp;
-        check.y = tiltingY;
-        if (check.isActiveAndEnabled) check.UpdateData();
+        //check.x = _lerp;
+        //check.y = tiltingY;
+        //if (check.isActiveAndEnabled) check.UpdateData();
         //[/тестовая передача данных]
-        MoveTransformByLerp(_lerp);
-        
+        MoveTransformByLerp(_lerp);        
         return _lerp;
     }
 
     private void MoveTransformByLerp(Vector2 lerp)
     {
-        Vector3 position = _transform.position;
+        if (_joy == null) Debug.Log($"Local {_transform.localPosition}, Global {_transform.position}");
+        Vector3 position = _transform.localPosition;
         position.x = Mathf.LerpUnclamped(0, _fieldRadius, lerp.x);
         position.y = Mathf.LerpUnclamped(0, _fieldRadius, lerp.y);
-        _transform.position = position;
+        _transform.localPosition = position;
+        if (_joy == null) Debug.Log($"Local2 {_transform.localPosition}, Global2 {_transform.position}");
     }
 
     private Vector2 moveByJoy(Vector2 lerp, float speed)

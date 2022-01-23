@@ -1,3 +1,5 @@
+//удалить когда буду чистить код.
+
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Fly : MonoBehaviour
 {
-    public float Speed = 10;
+    public float Speed;
     private Rigidbody _rigidbody;
     bool stop;
     static Vector3 _currentSpeed;

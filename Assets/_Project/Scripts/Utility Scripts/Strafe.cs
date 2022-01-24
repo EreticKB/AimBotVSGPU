@@ -43,8 +43,8 @@ public class Strafe
         _correction = 1 / _clamp;
     }
 
-    
-    public Strafe(RectTransform transform, float speed, float fieldRadius, float sensitivity) 
+
+    public Strafe(RectTransform transform, float speed, float fieldRadius, float sensitivity)
     {
         //для использования класса без джойстика, например для экрана отслеживающего положение телефона в меню калибровки положения
         _transform = transform;
@@ -84,8 +84,10 @@ public class Strafe
         tilting.y = Mathf.Clamp(tilting.y, -_clamp, _clamp);
         _lerp.x = Mathf.Lerp(_lerp.x, tilting.x * _correction, Speed * Time.deltaTime);
         _lerp.y = Mathf.Lerp(_lerp.y, tilting.y * _correction, Speed * Time.deltaTime);
+        _lerp.x = Mathf.Clamp(_lerp.x, -1f, 1f);//ограничение используется для блокировки бага с исчезновением "точки" при калибровке если телефон был наклонен под определенными углами.
+        _lerp.y = Mathf.Clamp(_lerp.y, -1f, 1f);
         if (_lerp.sqrMagnitude > 1) _lerp = _lerp.normalized;
-        MoveTransformByLerp(_lerp);        
+        MoveTransformByLerp(_lerp);
         return _lerp;
     }
 
@@ -99,10 +101,11 @@ public class Strafe
 
     private Vector2 moveByJoy(Vector2 lerp, float speed)
     {
-        if (_joy.Horizontal > .5f) return moveRight(lerp, speed);
-        if (_joy.Horizontal < -.5f) return moveLeft(lerp, speed);
-        if (_joy.Vertical > .5f) return moveUp(lerp, speed);
-        if (_joy.Vertical < -.5f) return moveDown(lerp, speed);
+        if (_joy.Horizontal < 0.5f && _joy.Horizontal > -0.5f && _joy.Vertical < 0.5f && _joy.Vertical > -0.5f) return lerp;
+        if (_joy.Horizontal >= 0f) lerp = moveRight(lerp, speed);
+        if (_joy.Horizontal < 0f) lerp = moveLeft(lerp, speed);
+        if (_joy.Vertical >= 0f) lerp = moveUp(lerp, speed);
+        if (_joy.Vertical < 0f) lerp = moveDown(lerp, speed);
         return lerp;
     }
 

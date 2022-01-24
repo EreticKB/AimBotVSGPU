@@ -8,10 +8,10 @@ public class ControlSensitivity : MonoBehaviour
     private void Awake()
     {
         SaveHandler.LoadProperty(Game.IndexControlSensitivity, out float value, 0.2f);
-        _sensitivity.value = value;
+        _sensitivity.value = 1.1f - value;
     }
     public void SensitivityUpdate(float value)
     {
-        SaveHandler.SaveProperty(Game.IndexControlSensitivity, _sensitivity.value);
+        SaveHandler.SaveProperty(Game.IndexControlSensitivity, 1.1f - _sensitivity.value);
     }
 }

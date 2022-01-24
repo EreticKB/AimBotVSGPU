@@ -3,17 +3,21 @@ using UnityEngine;
 public class MapPosition : MonoBehaviour
 {
     private Strafe _strafe;
+    [SerializeField] bl_Joystick _joyStick = null;
     [SerializeField] RectTransform _point;
     [SerializeField] private float _radius;
     [SerializeField] private float _speed;
     private void Awake()
     {
-        _strafe = new Strafe(_point, _speed, _radius, _loadSensitivity());
+        if (_joyStick == null) _strafe = new Strafe(_point, _speed, _radius, _loadSensitivity());
+        else _strafe = new Strafe(_point, _speed, _radius, _joyStick, _loadSensitivity());
     }
 
     private void Update()
     {
-        _strafe.UpdateFromTilting(Game.TiltOffSet);
+        SaveHandler.LoadProperty(Game.IndexTiltActivation, out bool state, true);
+        if (state) _strafe.UpdateFromTilting(Game.TiltOffSet);
+        else _strafe.UpdateFromKey();
     }
     private void FixedUpdate()
     {

@@ -5,6 +5,7 @@ public class Game : MonoBehaviour
     public static readonly string IndexGameVolume = "GameVolume";
     public static readonly string IndexControlSensitivity = "ControlSensitivity";
     public static readonly string IndexTiltActivation = "TiltActivation";
+
     [SerializeField] CanvasController CanvasRoot;
     public static Quaternion TiltOffSet = new Quaternion();
     public static Quaternion SavedTiltOffSet //я знаю, что можно просто конвертировать юнити кватернион в сериализуемый кватернион, но буду делать если останется время.

@@ -9,7 +9,7 @@ public class RingCollectionHandler : MonoBehaviour
     private Transform _transform;
     public Level LevelScript;
     private Vector3 _scale;
-    private float _sizeUpSpeed = .5f;
+    [SerializeField]private float _sizeUpTime = 3f;
     private void Awake()
     {
         _ringScripts = new List<Ring>(Rings.Count);
@@ -50,7 +50,7 @@ public class RingCollectionHandler : MonoBehaviour
     {
         while (scale < 1)
         {
-        scale += Time.deltaTime*_sizeUpSpeed;
+        scale += Time.deltaTime / _sizeUpTime;
         if (scale > 1) scale = 1;
         _transform.localScale = new Vector3(Mathf.Lerp(_scale.x, 1f, scale), Mathf.Lerp(_scale.y, 1f, scale), 1);
         yield return null;

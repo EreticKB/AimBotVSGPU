@@ -8,7 +8,6 @@ public class SwapControlType : MonoBehaviour
     private void Awake()
     {
         SaveHandler.LoadProperty(Game.IndexTiltActivation, out bool state, true);
-        Debug.Log(state);
         _text.text = GetStateStatus(state);
     }
     public void ChangeControls()

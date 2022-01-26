@@ -1,11 +1,13 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //ќбщий класс, хран€щий наиболее глобальные параметры и управл€ющий основным игровым процессом.
 public class Game : MonoBehaviour
 {
     public static readonly string IndexGameVolume = "GameVolume";
     public static readonly string IndexControlSensitivity = "ControlSensitivity";
     public static readonly string IndexTiltActivation = "TiltActivation";
-    
+    public static readonly string IndexEndlessRecord = "EndlessRecord";
     public float StartTimer;
 
     [SerializeField] FlyInterfaceController _flyInterface;
@@ -36,19 +38,27 @@ public class Game : MonoBehaviour
     {
         FirstLoad, //ѕерва€ загрузка игры.
         PlayngEndless, //»граем. :)
-        StartWaiting, //трехсекундный таймер перед непосредственно началом полета после загрузки сцены.
-        Death,
-        PlayingStory
+        PlayingStory,
+        DeathEndless,
+        DeathStory 
     }
     static GameState _currentState = GameState.FirstLoad;
-    
-    
+
+
 
     public static void StartEndlessGame()
     {
         _currentState = GameState.PlayngEndless;
+        Level.LevelType = Level.LevelTypeList.Endless;
+        
     }
 
+    public static void StartStoryGame()
+    {
+        _currentState = GameState.PlayingStory;
+        Level.LevelType = Level.LevelTypeList.Story;
+
+    }
     private void Awake()
     {
         TiltOffSet = SavedTiltOffSet;
@@ -56,13 +66,46 @@ public class Game : MonoBehaviour
     private void Start()
     {
         CanvasRoot.ActivateInterfaceByIndex(_currentState == GameState.FirstLoad ? 0 : 3);
-        if (_currentState == GameState.PlayngEndless) _flyInterface.SetEndlessRecordActive();
-        if (_currentState == GameState.PlayingStory) _flyInterface.SetLevelProgressActive();
+        if (_currentState == GameState.FirstLoad) return;
+        if (_currentState == GameState.PlayngEndless)
+        {
+            _flyInterface.SetEndlessRecordActive();
+        }
+        if (_currentState == GameState.PlayingStory)
+        {
+            _flyInterface.SetLevelProgressActive(); 
+        }
         _flyInterface.SetStartTimer(StartTimer);
-
+        StartCoroutine(startCountDown(StartTimer));
     }
-    public static void SetDeath()
+
+    private void Update()
     {
-        _currentState = GameState.Death;
+        if (_player.CurrentPlayerState == PlayerBehaviour.PlayerState.Crush)
+        {
+            _player.CurrentPlayerState = PlayerBehaviour.PlayerState.Wait;
+            _flyInterface.SetDefeatMenuActive();
+        }
+        if (_currentState == GameState.DeathEndless)
+        {
+            _currentState = GameState.FirstLoad;
+            SaveHandler.SaveProperty(IndexEndlessRecord, RingPassed.EndlessRecord);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+    public void SetDeath()
+    {
+        if (_currentState == GameState.PlayngEndless) _currentState = GameState.DeathEndless;
+        else _currentState = GameState.DeathStory;
+    }
+
+    IEnumerator startCountDown(float timer)
+    {
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        _player.EngadeEngine();
     }
 }

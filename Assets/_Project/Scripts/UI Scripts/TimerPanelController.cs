@@ -11,7 +11,6 @@ public class TimerPanelController : MonoBehaviour
     {
         _timer = Timer;
     }
-    // Update is called once per frame
     void Update()
     {
         _counter.text = Timer.ToString("F0");

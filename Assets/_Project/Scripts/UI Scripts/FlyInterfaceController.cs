@@ -4,6 +4,7 @@ public class FlyInterfaceController : MenuScriptControllerRoot
     [SerializeField] GameObject _levelProgressBar;
     [SerializeField] GameObject _endlessRecordStatus;
     [SerializeField] GameObject _timer;
+    [SerializeField] GameObject _defeatMenu;
 
     private void Update()
     {
@@ -22,5 +23,9 @@ public class FlyInterfaceController : MenuScriptControllerRoot
     {
         _timer.GetComponent<TimerPanelController>().Timer = timer;
         _timer.SetActive(true);
+    }
+    public void SetDefeatMenuActive()
+    {
+        _defeatMenu.SetActive(true);
     }
 }

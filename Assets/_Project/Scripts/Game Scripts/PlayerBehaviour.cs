@@ -6,6 +6,7 @@ public class PlayerBehaviour : MonoBehaviour
     private bool _isTiltEnabled;
     public bl_Joystick JoyStick; //стик для любителей садомазо со стиками
     private Strafe _strafe;
+    private Fly _fly;
 
     private List<IFollower> _followers = new List<IFollower>();//больше для практики шаблона, чем по необходимости, т.к. камеру оказалось проще прикрепить к игроку и сейчас используется только для 
     private int _followersIndex = -1;//того, чтобы держать "точку выхода" на постоянном удалении.
@@ -15,8 +16,18 @@ public class PlayerBehaviour : MonoBehaviour
     public Material[] Materials; //массив используемых в препятствиях и точке выхода материалов, позволяющий контроллируемо "искажать" туннель.
     private Vector2[] _lerp; //массив для хранения векторов Strafe._lerp. Используется для управления смещением "точки выхода" в отдалении от игрока.
     private Loop _loop;
+
+    public enum PlayerState
+    {
+        Play,
+        Wait,
+        Crush
+    }
+    public PlayerState CurrentPlayerState;
+
     private void Awake()
     {
+        _fly = GetComponent<Fly>();
         SaveHandler.LoadProperty(Game.IndexTiltActivation, out _isTiltEnabled, true);
         for (int i = 0; i < Materials.Length; i++)
         {
@@ -31,6 +42,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if (CurrentPlayerState != PlayerState.Play)
+        {
+            _fly.ShipEngineEngage(false);
+            return;
+        }
         for (int i = 0; i <= _followersIndex; i++) _followers[i].TakeMyPosition(_transform.position);
 
         int offSet;
@@ -47,7 +63,6 @@ public class PlayerBehaviour : MonoBehaviour
         {
             BendMaterial(Materials[i], 0f, 0.0005f, _lerp[offSet]); ;
         }
-
     }
 
     public void AddFollower(IFollower follower)
@@ -62,9 +77,21 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        CurrentPlayerState = PlayerState.Crush;
+        _fly.ShipEngineEngage(false);
         Debug.Log($"{getFollowerByName("WarpTunnel")} crash...");
     }
 
+    public void EngadeEngine()
+    {
+        _fly.ShipEngineEngage(true);
+        CurrentPlayerState = PlayerState.Play;
+    }
+    public void DisEngageEngine()
+    {
+        _fly.ShipEngineEngage(false);
+        CurrentPlayerState = PlayerState.Wait;
+    }
     private void enableFollowByName(string name, bool set)
     {
         _followers[getFollowerByName(name)].IsFollow = set;

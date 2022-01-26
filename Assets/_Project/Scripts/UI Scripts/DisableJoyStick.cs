@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DisableComponent : MonoBehaviour
+public class DisableJoyStick : MonoBehaviour
 {
     private void Awake()
     {

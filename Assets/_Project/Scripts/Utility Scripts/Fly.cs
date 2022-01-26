@@ -5,7 +5,6 @@ public class Fly : MonoBehaviour
     public float Speed;
     private Rigidbody _rigidbody;
     bool stop;
-    static Vector3 _currentSpeed;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -13,18 +12,16 @@ public class Fly : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) stop = stop ? false : true;
+        if (Input.GetKeyDown(KeyCode.R)) ShipEngineEngage(stop ? false : true);
     }
     private void FixedUpdate()
     {
-        _currentSpeed = _rigidbody.velocity;
-        _currentSpeed.z = stop ? Speed : 0;
-        _rigidbody.velocity = _currentSpeed;
+        _rigidbody.velocity = new Vector3(0, 0, stop ? Speed : 0);
     }
 
-    public void TestShipStart()
+    public void ShipEngineEngage(bool engage)
     {
-        stop = stop ? false : true;
+        stop = engage;
     }
     
 }

@@ -5,7 +5,11 @@ public class Game : MonoBehaviour
     public static readonly string IndexGameVolume = "GameVolume";
     public static readonly string IndexControlSensitivity = "ControlSensitivity";
     public static readonly string IndexTiltActivation = "TiltActivation";
+    
+    public float StartTimer;
 
+    [SerializeField] FlyInterfaceController _flyInterface;
+    [SerializeField] PlayerBehaviour _player;
     [SerializeField] CanvasController CanvasRoot;
     public static Quaternion TiltOffSet = new Quaternion();
     public static Quaternion SavedTiltOffSet //я знаю, что можно просто конвертировать юнити кватернион в сериализуемый кватернион, но буду делать если останется время.
@@ -25,11 +29,8 @@ public class Game : MonoBehaviour
             SaveHandler.SaveProperty("TiltQuaternionY", value.y);
             SaveHandler.SaveProperty("TiltQuaternionZ", value.z);
             SaveHandler.SaveProperty("TiltQuaternionW", value.w);
-            PlayerPrefs.Save();
         }
     }
-
-    
 
     enum GameState
     {
@@ -40,27 +41,27 @@ public class Game : MonoBehaviour
         PlayingStory
     }
     static GameState _currentState = GameState.FirstLoad;
+    
+    
+
     public static void StartEndlessGame()
     {
         _currentState = GameState.PlayngEndless;
     }
-    public static bool GameType; //true - бесконечный режим, false - сюжетный режим.
 
     private void Awake()
     {
         TiltOffSet = SavedTiltOffSet;
-        //if (_currentState != GameState.StartWaiting) _currentState = GameState.FirstLoad;
     }
     private void Start()
     {
         CanvasRoot.ActivateInterfaceByIndex(_currentState == GameState.FirstLoad ? 0 : 3);
-    }
-    void Update()
-    {
+        if (_currentState == GameState.PlayngEndless) _flyInterface.SetEndlessRecordActive();
+        if (_currentState == GameState.PlayingStory) _flyInterface.SetLevelProgressActive();
+        _flyInterface.SetStartTimer(StartTimer);
 
     }
-
-    public void SetDeath()
+    public static void SetDeath()
     {
         _currentState = GameState.Death;
     }

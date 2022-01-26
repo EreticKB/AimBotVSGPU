@@ -12,6 +12,10 @@ public class Calibrate : MonoBehaviour
         inputTilting.y = Mathf.Asin(tempX) * Mathf.Rad2Deg;
         inputTilting.z = 0;
         tiltOffSet = Quaternion.Euler(inputTilting);
+        if (float.IsNaN(tiltOffSet.x) || float.IsInfinity(tiltOffSet.x)) return;
+        if (float.IsNaN(tiltOffSet.y) || float.IsInfinity(tiltOffSet.y)) return;
+        if (float.IsNaN(tiltOffSet.z) || float.IsInfinity(tiltOffSet.z)) return;
+        if (float.IsNaN(tiltOffSet.w) || float.IsInfinity(tiltOffSet.w)) return;
         if (tempZ >= 0) tiltOffSet.w = -tiltOffSet.w;
         Game.SavedTiltOffSet = tiltOffSet;
         Game.TiltOffSet = tiltOffSet;

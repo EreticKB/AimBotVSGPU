@@ -25,12 +25,7 @@ public class Follow
     }
     public void UpdatePosition(Vector3 followed)
     {
-        if (_closeStart)
-        {
-            followed.x = Mathf.Lerp(followed.x - _offset.x, followed.x, _prewarmDistance);
-            followed.y = Mathf.Lerp(followed.y - _offset.y, followed.y, _prewarmDistance);
-            followed.z = Mathf.Lerp(followed.z - _offset.z, followed.z, _prewarmDistance);
-        }
+        if (_closeStart) followed = Vector3.Lerp(followed - _offset, followed, _prewarmDistance);
         _follower.position = _isPositionFollowed ? followed + _offset : new Vector3(_offset.x, _offset.y, followed.z + _offset.z);
     }
 

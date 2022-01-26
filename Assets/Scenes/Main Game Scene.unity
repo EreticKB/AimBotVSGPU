@@ -3173,7 +3173,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146072
+  m_Name: pb_Mesh33216
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3732,9 +3732,9 @@ MonoBehaviour:
   JoyStick: {fileID: 247200324}
   _engine: {fileID: 1645423848}
   _crash: {fileID: 862657823}
-  MinSpeed: 400
-  MaxSpeed: 1500
-  StrafeSpeed: 2.5
+  MinSpeed: 300
+  MaxSpeed: 900
+  StrafeSpeed: 2.7
   FieldRadius: 150
   Materials:
   - {fileID: 2100000, guid: e02f3e1076d63de4c85ea0a7006cdb44, type: 2}
@@ -4467,7 +4467,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146304
+  m_Name: pb_Mesh32742
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12843,7 +12843,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146128
+  m_Name: pb_Mesh32622
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18389,7 +18389,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146148
+  m_Name: pb_Mesh32706
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18669,7 +18669,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146278
+  m_Name: pb_Mesh33066
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

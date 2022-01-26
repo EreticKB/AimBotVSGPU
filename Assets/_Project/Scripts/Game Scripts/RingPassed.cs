@@ -10,6 +10,7 @@ public class RingPassed : MonoBehaviour
     }
     private void Awake()
     {
+        EndlessRecord = 0;
         _ring = GetComponent<RingCollectionHandler>();
     }
     private void OnTriggerEnter(Collider other)

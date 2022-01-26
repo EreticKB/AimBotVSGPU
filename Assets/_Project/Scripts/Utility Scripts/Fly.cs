@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
 public class Fly : MonoBehaviour
 {
-    public float Speed;
+    [SerializeField] private float Speed;
     private Rigidbody _rigidbody;
     bool _stop;
     private void Awake()
@@ -28,5 +27,9 @@ public class Fly : MonoBehaviour
     public bool GetShipEngineStatus()
     {
         return _stop;
+    }
+    public void SetShipVelocity(float velocity)
+    {
+        Speed = velocity;
     }
 }

@@ -12,7 +12,8 @@ public class Game : MonoBehaviour
 
     [SerializeField] FlyInterfaceController _flyInterface;
     [SerializeField] PlayerBehaviour _player;
-    [SerializeField] CanvasController CanvasRoot;
+    [SerializeField] CanvasController _canvasRoot;
+    [SerializeField] AudioSource _mainMenuMusic;
     public static Quaternion TiltOffSet = new Quaternion();
     public static Quaternion SavedTiltOffSet //я знаю, что можно просто конвертировать юнити кватернион в сериализуемый кватернион, но буду делать если останется время.
     {
@@ -62,10 +63,12 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         TiltOffSet = SavedTiltOffSet;
+        if (_currentState == GameState.FirstLoad) _mainMenuMusic.Play();
+        else _mainMenuMusic.Stop();
     }
     private void Start()
     {
-        CanvasRoot.ActivateInterfaceByIndex(_currentState == GameState.FirstLoad ? 0 : 3);
+        _canvasRoot.ActivateInterfaceByIndex(_currentState == GameState.FirstLoad ? 0 : 3);
         if (_currentState == GameState.FirstLoad) return;
         if (_currentState == GameState.PlayngEndless)
         {
@@ -89,7 +92,8 @@ public class Game : MonoBehaviour
         if (_currentState == GameState.DeathEndless)
         {
             _currentState = GameState.FirstLoad;
-            SaveHandler.SaveProperty(IndexEndlessRecord, RingPassed.EndlessRecord);
+            SaveHandler.LoadProperty(IndexEndlessRecord, out int record, 0);
+            if (record < RingPassed.EndlessRecord)  SaveHandler.SaveProperty(IndexEndlessRecord, RingPassed.EndlessRecord);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

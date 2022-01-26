@@ -7,6 +7,11 @@ public class PlayerBehaviour : MonoBehaviour
     public bl_Joystick JoyStick; //стик для любителей садомазо со стиками
     private Strafe _strafe;
     private Fly _fly;
+    private bool _crashed;
+    [SerializeField] AudioSource _engine;
+    [SerializeField] AudioSource _crash;
+    [SerializeField] float MinSpeed;
+    [SerializeField] float MaxSpeed;
 
     private List<IFollower> _followers = new List<IFollower>();//больше для практики шаблона, чем по необходимости, т.к. камеру оказалось проще прикрепить к игроку и сейчас используется только для 
     private int _followersIndex = -1;//того, чтобы держать "точку выхода" на постоянном удалении.
@@ -27,6 +32,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        _crashed = false;
         _fly = GetComponent<Fly>();
         SaveHandler.LoadProperty(Game.IndexTiltActivation, out _isTiltEnabled, true);
         for (int i = 0; i < Materials.Length; i++)
@@ -42,6 +48,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if (RingPassed.EndlessRecord <= 100) _fly.SetShipVelocity(Mathf.Lerp(MinSpeed, MaxSpeed, RingPassed.EndlessRecord / 100f));
         if (CurrentPlayerState != PlayerState.Play)
         {
             _fly.ShipEngineEngage(false);
@@ -77,20 +84,26 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (!_crashed)
+        {
+            _crash.Play();
+            _crashed = true;
+        }
         CurrentPlayerState = PlayerState.Crush;
         _fly.ShipEngineEngage(false);
-        Debug.Log($"{getFollowerByName("WarpTunnel")} crash...");
     }
 
     public void EngadeEngine()
     {
         _fly.ShipEngineEngage(true);
         CurrentPlayerState = PlayerState.Play;
+        _engine.Play();
     }
     public void DisEngageEngine()
     {
         _fly.ShipEngineEngage(false);
         CurrentPlayerState = PlayerState.Wait;
+        _engine.Stop();
     }
     private void enableFollowByName(string name, bool set)
     {

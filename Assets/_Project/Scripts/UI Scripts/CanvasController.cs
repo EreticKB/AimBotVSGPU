@@ -4,6 +4,7 @@ public class CanvasController : MonoBehaviour
 {
     [SerializeField] GameObject[] _canvas;
     MenuScriptControllerRoot[] _menuController;
+    public AudioSource ButtonClick;
 
     private void Start()
     {

@@ -39,7 +39,8 @@ public class Level : MonoBehaviour
         }
         if (LevelType == LevelTypeList.Endless)
         {
-            for (int i = _poolSize / 2; i < _poolSize; i++) _ringCollectionScript[i].EnableRing(2, 1, new Vector3(0, 0, 400 * i));
+            SetGeneration(2, 1);
+            for (int i = _poolSize / 2; i < _poolSize; i++) _ringCollectionScript[i].EnableRing(_ringTypes, _difficulty, new Vector3(0, 0, 400 * i));
         }
     }
 
@@ -47,15 +48,23 @@ public class Level : MonoBehaviour
     {
         if (LevelType == LevelTypeList.Endless)
         {
-            if (RingPassed.EndlessRecord < 3) _ringCollectionScript[_loop.Next()].EnableRing(3, 1, new Vector3(0, 0, 400 * _poolSize));
-            else if (RingPassed.EndlessRecord < 8) _ringCollectionScript[_loop.Next()].EnableRing(3, 2, new Vector3(0, 0, 400 * _poolSize));
-            else if (RingPassed.EndlessRecord < 13) _ringCollectionScript[_loop.Next()].EnableRing(4, 2, new Vector3(0, 0, 400 * _poolSize));
-            else if (RingPassed.EndlessRecord < 18) _ringCollectionScript[_loop.Next()].EnableRing(5, 2, new Vector3(0, 0, 400 * _poolSize));
-            else if (RingPassed.EndlessRecord < 23) _ringCollectionScript[_loop.Next()].EnableRing(6, 2, new Vector3(0, 0, 400 * _poolSize));
-            else if (RingPassed.EndlessRecord < 28) _ringCollectionScript[_loop.Next()].EnableRing(6, 3, new Vector3(0, 0, 400 * _poolSize));
-            else if (RingPassed.EndlessRecord < 50) _ringCollectionScript[_loop.Next()].EnableRing(6, 4, new Vector3(0, 0, 400 * _poolSize));
-            else _ringCollectionScript[_loop.Next()].EnableRing(6, 5, new Vector3(0, 0, 400 * _poolSize));
-            
+            if (RingPassed.EndlessRecord < 3) SetGeneration(3,1);
+            else if (RingPassed.EndlessRecord < 18) SetGeneration(4,2);
+            else if (RingPassed.EndlessRecord < 30) SetGeneration(5,3);
+            else if (RingPassed.EndlessRecord < 40) SetGeneration(6,3);
+            else if (RingPassed.EndlessRecord < 60) SetGeneration(7, 3);
+            else if (RingPassed.EndlessRecord < 80) SetGeneration(7, 4);
+            else if (RingPassed.EndlessRecord < 100) SetGeneration(9,4);
+            else if (RingPassed.EndlessRecord < 110) SetGeneration(9, 5);
+            else if (RingPassed.EndlessRecord < 130) SetGeneration(10, 5);
+            else SetGeneration(10, 6);
+
         }
+        _ringCollectionScript[_loop.Next()].EnableRing(_ringTypes, _difficulty, new Vector3(0, 0, 400 * _poolSize));
+    }
+    private void SetGeneration(int ringTypes, int difficulty)
+    {
+        _ringTypes = ringTypes;
+        _difficulty = difficulty;
     }
 }

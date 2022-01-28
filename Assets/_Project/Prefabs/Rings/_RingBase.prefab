@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3486199324078083752}
   - component: {fileID: -4192611886034057324}
   m_Layer: 0
-  m_Name: RingBase
+  m_Name: _RingBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

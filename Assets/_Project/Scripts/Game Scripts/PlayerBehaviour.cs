@@ -4,14 +4,17 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     private bool _isTiltEnabled;
+    
     public bl_Joystick JoyStick; //стик для любителей садомазо со стиками
     private Strafe _strafe;
     private Fly _fly;
     private bool _crashed;
+    [SerializeField] float _accelerationDistance;
+    [SerializeField] SpeedBarController _speedBar;
     [SerializeField] AudioSource _engine;
     [SerializeField] AudioSource _crash;
-    [SerializeField] float MinSpeed;
-    [SerializeField] float MaxSpeed;
+    [SerializeField] float _minSpeed;
+    [SerializeField] float _maxSpeed;
 
     private List<IFollower> _followers = new List<IFollower>();//больше для практики шаблона, чем по необходимости, т.к. камеру оказалось проще прикрепить к игроку и сейчас используется только для 
     private int _followersIndex = -1;//того, чтобы держать "точку выхода" на постоянном удалении.
@@ -48,7 +51,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (RingPassed.EndlessRecord <= 100) _fly.SetShipVelocity(Mathf.Lerp(MinSpeed, MaxSpeed, RingPassed.EndlessRecord / 100f));
+        if (RingPassed.EndlessRecord <= 100) _fly.SetShipVelocity(Mathf.Lerp(_minSpeed, _maxSpeed, RingPassed.EndlessRecord / _accelerationDistance));
+        _speedBar.SetSpeedStatus(RingPassed.EndlessRecord / _accelerationDistance);
         if (CurrentPlayerState != PlayerState.Play)
         {
             _fly.ShipEngineEngage(false);

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7717601178571906990
+--- !u!1001 &6305932265304751116
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -63,13 +63,17 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 780685085709128887, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1247809322376460893, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1296575374957946247, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Name
-      value: Ring Type Double KeyHole
+      value: Ring Type Side Hole
       objectReference: {fileID: 0}
     - target: {fileID: 1812786762811459906, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
@@ -95,21 +99,17 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 2596621819916764803, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3052539762073504273, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3560670828839213756, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3591721551976572155, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3897028149319639092, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4371661955625712788, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
@@ -134,10 +134,6 @@ PrefabInstance:
     - target: {fileID: 5631798236518728469, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6343815007485158992, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6695878900564078480, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
@@ -166,10 +162,6 @@ PrefabInstance:
     - target: {fileID: 8314218522889626729, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8441432225505882969, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9084061062215138310, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7717601178571906990
+--- !u!1001 &366026418508744992
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -63,13 +63,17 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 780685085709128887, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1247809322376460893, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1296575374957946247, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Name
-      value: Ring Type Double KeyHole
+      value: Ring Type DoubleSide Opens
       objectReference: {fileID: 0}
     - target: {fileID: 1812786762811459906, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
@@ -106,10 +110,6 @@ PrefabInstance:
     - target: {fileID: 3591721551976572155, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3897028149319639092, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4371661955625712788, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
@@ -155,6 +155,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7351901146385969957, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485366482141536220, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7558903535438858883, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -168,6 +176,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8441432225505882969, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560802039283359248, guid: d52a7c7acc4b3b94e9e5be812a53f2ed, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

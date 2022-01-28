@@ -6,7 +6,7 @@ public class Strafe
     private float _clamp;
     private float _correction;
     //=======================================
-    private bl_Joystick _joy; //Ссылка на виртуальный стик для любителей садомазо со стиками.
+    private JoystickController _joy; //Ссылка на виртуальный стик для любителей садомазо со стиками.
     private float _speed; //Определеяет скорость смещения.
     public float Speed
     {
@@ -33,7 +33,7 @@ public class Strafe
     private Transform _transform;
     private Vector2 _lerp = new Vector2(0f, 0f); //вектор, чьи составляющие используются как t смещения через Mathf.Lerp().
 
-    public Strafe(Transform transform, float speed, float fieldRadius, bl_Joystick joy, float sensitivity)
+    public Strafe(Transform transform, float speed, float fieldRadius, JoystickController joy, float sensitivity)
     {
         _transform = transform;
         Speed = speed;
@@ -71,7 +71,7 @@ public class Strafe
         if (Input.GetKey(KeyCode.A)) _lerp = moveLeft(_lerp, Speed);
         if (Input.GetKey(KeyCode.D)) _lerp = moveRight(_lerp, Speed);
         //=============================================
-        if (_joy != null) if (_joy.isActiveAndEnabled) if (Input.anyKey) _lerp = moveByJoy(_lerp, Speed);
+        if (_joy != null) if (_joy.isActiveAndEnabled) if (Input.anyKey) _lerp = moveByJoy(_lerp);
         MoveTransformByLerp(_lerp);
         return _lerp;
     }
@@ -82,13 +82,17 @@ public class Strafe
         tilting = tiltOffSet * tilting;
         tilting.x = Mathf.Clamp(tilting.x, -_clamp, _clamp);
         tilting.y = Mathf.Clamp(tilting.y, -_clamp, _clamp);
-        _lerp.x = Mathf.Lerp(_lerp.x, tilting.x * _correction, Speed * Time.deltaTime);
-        _lerp.y = Mathf.Lerp(_lerp.y, tilting.y * _correction, Speed * Time.deltaTime);
-        _lerp.x = Mathf.Clamp(_lerp.x, -1f, 1f);//ограничение используется для блокировки бага с исчезновением "точки" при калибровке если телефон был наклонен под определенными углами.
-        _lerp.y = Mathf.Clamp(_lerp.y, -1f, 1f);
-        if (_lerp.sqrMagnitude > 1) _lerp = _lerp.normalized;
-        MoveTransformByLerp(_lerp);
+        _lerp = moveBetweenPoints(_lerp, tilting, _correction);
         return _lerp;
+    }
+
+    private Vector3 moveBetweenPoints(Vector3 start, Vector3 end, float correction)
+    {
+        start.x = Mathf.Lerp(start.x, end.x * correction, Speed * Time.deltaTime);
+        start.y = Mathf.Lerp(start.y, end.y * correction, Speed * Time.deltaTime);
+        if (start.sqrMagnitude > 1) start = start.normalized;
+        MoveTransformByLerp(start);
+        return start;
     }
 
     private void MoveTransformByLerp(Vector2 lerp)
@@ -99,13 +103,13 @@ public class Strafe
         _transform.localPosition = position;
     }
 
-    private Vector2 moveByJoy(Vector2 lerp, float speed)
+    private Vector2 moveByJoy(Vector2 lerp)
     {
-        if (_joy.Horizontal < 0.5f && _joy.Horizontal > -0.5f && _joy.Vertical < 0.5f && _joy.Vertical > -0.5f) return lerp;
-        if (_joy.Horizontal >= 0f) lerp = moveRight(lerp, speed);
-        if (_joy.Horizontal < 0f) lerp = moveLeft(lerp, speed);
-        if (_joy.Vertical >= 0f) lerp = moveUp(lerp, speed);
-        if (_joy.Vertical < 0f) lerp = moveDown(lerp, speed);
+
+        if (!_joy.GetDelta2Normalized(out Vector2 lerpTarget))
+        {
+            lerp = moveBetweenPoints(lerp, lerpTarget, 1);
+        }
         return lerp;
     }
 

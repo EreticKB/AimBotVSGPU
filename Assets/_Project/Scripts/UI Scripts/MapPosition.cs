@@ -3,7 +3,7 @@ using UnityEngine;
 public class MapPosition : MonoBehaviour
 {
     private Strafe _strafe;
-    [SerializeField] bl_Joystick _joyStick = null;
+    [SerializeField] JoystickController _joyStick = null;
     [SerializeField] RectTransform _point;
     [SerializeField] private float _radius;
     [SerializeField] private float _speed;

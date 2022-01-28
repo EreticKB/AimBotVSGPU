@@ -5,11 +5,11 @@ public class PlayerBehaviour : MonoBehaviour
 {
     private bool _isTiltEnabled;
     
-    public bl_Joystick JoyStick; //стик для любителей садомазо со стиками
+    public JoystickController JoyStick; //стик для любителей садомазо со стиками
     private Strafe _strafe;
     private Fly _fly;
     private bool _crashed;
-    [SerializeField] float _accelerationDistance;
+    [SerializeField] float _accelerationDistance; //сколько колец надо пройти прежде чем скорость достигнет максимального значения.
     [SerializeField] SpeedBarController _speedBar;
     [SerializeField] AudioSource _engine;
     [SerializeField] AudioSource _crash;
@@ -48,6 +48,7 @@ public class PlayerBehaviour : MonoBehaviour
         _strafe = new Strafe(_transform, StrafeSpeed, FieldRadius, JoyStick, sensitivity);
         _loop = new Loop(0, 100, 10);
         _lerp = new Vector2[100];
+        CurrentPlayerState = PlayerState.Wait;
     }
 
     private void Update()

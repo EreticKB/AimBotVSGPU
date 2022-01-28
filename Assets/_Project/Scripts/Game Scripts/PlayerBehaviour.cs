@@ -35,6 +35,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        _accelerationDistance = _accelerationDistance == 0 ? 1 : _accelerationDistance;
         _crashed = false;
         _fly = GetComponent<Fly>();
         SaveHandler.LoadProperty(Game.IndexTiltActivation, out _isTiltEnabled, true);
@@ -51,13 +52,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (RingPassed.EndlessRecord <= 100) _fly.SetShipVelocity(Mathf.Lerp(_minSpeed, _maxSpeed, RingPassed.EndlessRecord / _accelerationDistance));
-        _speedBar.SetSpeedStatus(RingPassed.EndlessRecord / _accelerationDistance);
+        if (RingPassed.EndlessRecord <= _accelerationDistance) _fly.SetShipVelocity(Mathf.Lerp(_minSpeed, _maxSpeed, RingPassed.EndlessRecord / _accelerationDistance));
         if (CurrentPlayerState != PlayerState.Play)
         {
             _fly.ShipEngineEngage(false);
             return;
         }
+        _speedBar.SetSpeedStatus(RingPassed.EndlessRecord / _accelerationDistance);
         for (int i = 0; i <= _followersIndex; i++) _followers[i].TakeMyPosition(_transform.position);
 
         int offSet;

@@ -50,12 +50,12 @@ public class Level : MonoBehaviour
         {
             if (RingPassed.EndlessRecord < 3) SetGeneration(3,1);
             else if (RingPassed.EndlessRecord < 18) SetGeneration(4,2);
-            else if (RingPassed.EndlessRecord < 30) SetGeneration(5,3);
-            else if (RingPassed.EndlessRecord < 40) SetGeneration(6,3);
-            else if (RingPassed.EndlessRecord < 60) SetGeneration(7, 3);
-            else if (RingPassed.EndlessRecord < 80) SetGeneration(7, 4);
-            else if (RingPassed.EndlessRecord < 100) SetGeneration(9,4);
-            else if (RingPassed.EndlessRecord < 110) SetGeneration(9, 5);
+            else if (RingPassed.EndlessRecord < 30) SetGeneration(5,2);
+            else if (RingPassed.EndlessRecord < 40) SetGeneration(6,2);
+            else if (RingPassed.EndlessRecord < 60) SetGeneration(7, 2);
+            else if (RingPassed.EndlessRecord < 80) SetGeneration(7, 3);
+            else if (RingPassed.EndlessRecord < 100) SetGeneration(9,3);
+            else if (RingPassed.EndlessRecord < 110) SetGeneration(9, 4);
             else if (RingPassed.EndlessRecord < 130) SetGeneration(10, 5);
             else SetGeneration(10, 6);
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Fly : MonoBehaviour
 {
-    [SerializeField] private float Speed;
+    [SerializeField] private float _speed;
     private Rigidbody _rigidbody;
     bool _stop;
     private void Awake()
@@ -16,7 +16,7 @@ public class Fly : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _rigidbody.velocity = new Vector3(0, 0, _stop ? Speed : 0);
+        _rigidbody.velocity = new Vector3(0, 0, _stop ? _speed : 0);
     }
 
     public void ShipEngineEngage(bool engage)
@@ -30,6 +30,6 @@ public class Fly : MonoBehaviour
     }
     public void SetShipVelocity(float velocity)
     {
-        Speed = velocity;
+        _speed = velocity;
     }
 }

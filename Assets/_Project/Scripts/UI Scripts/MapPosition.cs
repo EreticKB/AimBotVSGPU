@@ -28,5 +28,6 @@ public class MapPosition : MonoBehaviour
     {
         SaveHandler.LoadProperty(Game.IndexControlSensitivity, out float value, 0.2f);
         return value;
+
     }
 }

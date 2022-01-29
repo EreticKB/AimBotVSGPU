@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "2c5525e9",
         "name": "com.EreticKB.WarpSimulator",
-        "processId": 16978,
+        "processId": 7441,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -18,6 +18,24 @@
             "deviceId": "2c5525e9",
             "name": "com.EreticKB.WarpSimulator",
             "processId": 16978,
+            "exited": true
+        },
+        {
+            "deviceId": "2c5525e9",
+            "name": "com.EreticKB.WarpSimulator",
+            "processId": 32521,
+            "exited": true
+        },
+        {
+            "deviceId": "2c5525e9",
+            "name": "com.EreticKB.WarpSimulator",
+            "processId": 5249,
+            "exited": true
+        },
+        {
+            "deviceId": "2c5525e9",
+            "name": "com.EreticKB.WarpSimulator",
+            "processId": 7441,
             "exited": false
         }
     ],

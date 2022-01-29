@@ -86,8 +86,8 @@ public class Game : MonoBehaviour
     {
         if (_player.CurrentPlayerState == PlayerBehaviour.PlayerState.Crush)
         {
-            _player.CurrentPlayerState = PlayerBehaviour.PlayerState.Wait;
-            _flyInterface.SetDefeatMenuActive();
+            _player.DisEngageEngine();
+            _flyInterface.SetCrashMenuActive(true);
         }
         if (_currentState == GameState.DeathEndless)
         {
@@ -103,6 +103,13 @@ public class Game : MonoBehaviour
         else _currentState = GameState.DeathStory;
     }
 
+    public void UseContinue()
+    {
+        Vector3 position = _player.transform.position;
+        _player.transform.position = new Vector3(0, 0, position.z-600);
+        _flyInterface.SetCrashMenuActive(false);
+        Start();
+    }
     IEnumerator startCountDown(float timer)
     {
         while (timer > 0)

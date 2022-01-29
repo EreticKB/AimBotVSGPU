@@ -96,7 +96,7 @@ public class PlayerBehaviour : MonoBehaviour
             _crashed = true;
         }
         CurrentPlayerState = PlayerState.Crush;
-        _fly.ShipEngineEngage(false);
+        //_fly.ShipEngineEngage(false);
     }
 
     public void EngadeEngine()
@@ -111,7 +111,7 @@ public class PlayerBehaviour : MonoBehaviour
         CurrentPlayerState = PlayerState.Wait;
         _engine.Stop();
     }
-    private void enableFollowByName(string name, bool set)
+    private void enableFollowByName(string name, bool set)//сейчас не используется, заготовка для сюжетного режима.
     {
         _followers[getFollowerByName(name)].IsFollow = set;
     }

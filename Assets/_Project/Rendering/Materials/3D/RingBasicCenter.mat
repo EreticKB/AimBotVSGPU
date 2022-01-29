@@ -123,7 +123,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HorizontalAmount: -0.00011606154
+    - _HorizontalAmount: 0.000044813976
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -135,7 +135,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _VerticalAmount: -0.00030586892
+    - _VerticalAmount: 0.00029491363
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

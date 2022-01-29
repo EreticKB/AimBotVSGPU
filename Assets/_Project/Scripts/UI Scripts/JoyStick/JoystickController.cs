@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class JoystickController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
-    private bool _isFree;
+    private bool _isFree = true;
     [SerializeField] RectTransform _stick;
     RectTransform _thisRectTransform;
     private Vector3 _stickVelocity = Vector3.zero;
@@ -15,7 +15,7 @@ public class JoystickController : MonoBehaviour, IPointerDownHandler, IPointerUp
     private float _radiusScale;
     [SerializeField] private float _minRadius;
     [SerializeField] private float _maxRadius;
-    
+
 
     private void Awake()
     {
@@ -28,11 +28,7 @@ public class JoystickController : MonoBehaviour, IPointerDownHandler, IPointerUp
     void Update()
     {
         if (!_isFree) return;
-        if (Vector3.Distance(_stick.localPosition, Vector3.zero) < 0.1f)
-        {
-            _isFree = false;
-            _stick.localPosition = Vector3.zero;
-        }
+        if (Vector3.Distance(_stick.localPosition, Vector3.zero) < 0.1f) _stick.localPosition = Vector3.zero;
         _stick.localPosition = Vector3.SmoothDamp(_stick.localPosition, Vector3.zero, ref _stickVelocity, _stickReturningTime);
     }
 
@@ -79,6 +75,6 @@ public class JoystickController : MonoBehaviour, IPointerDownHandler, IPointerUp
         SaveHandler.LoadProperty(Game.IndexControlSensitivity, out float sensitivity, 0.5f);
         _radius = Mathf.Lerp(_minRadius, _maxRadius, sensitivity);
         if (_thisRectTransform != null) _thisRectTransform.sizeDelta = new Vector2((_radius + 15) * 2, (_radius + 15) * 2);
-        _stick.sizeDelta = new Vector2((_radius/_maxRadius)*140, (_radius / _maxRadius) * 140);
+        _stick.sizeDelta = new Vector2((_radius / _maxRadius) * 140, (_radius / _maxRadius) * 140);
     }
 }

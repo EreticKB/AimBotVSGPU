@@ -82,17 +82,16 @@ public class Strafe
         tilting = tiltOffSet * tilting;
         tilting.x = Mathf.Clamp(tilting.x, -_clamp, _clamp);
         tilting.y = Mathf.Clamp(tilting.y, -_clamp, _clamp);
-        Debug.Log("Engage Between From Tilt");
         _lerp = moveBetweenPoints(_lerp, tilting, _correction);
         return _lerp;
     }
 
     private Vector3 moveBetweenPoints(Vector3 start, Vector3 end, float correction)
     {
-        start = Vector2.Lerp(start, end*correction, Speed * Time.deltaTime);
+        start = Vector2.Lerp(start, end * correction, Speed * Time.deltaTime);
         if (start.sqrMagnitude > 1) start = start.normalized;
         MoveTransformByLerp(start);
-        Debug.Log("Move Between");
+        MoveTransformByLerp(start);
         return start;
     }
 
@@ -107,12 +106,7 @@ public class Strafe
     private Vector2 moveByJoy(Vector2 lerp)
     {
 
-        if (!_joy.GetDelta2Normalized(out Vector2 lerpTarget))
-        {
-            Debug.Log($"Engage Between From Joy {_joy.GetDelta2Normalized(out Vector2 lerp2Target)}");
-            lerp = moveBetweenPoints(lerp, lerpTarget, 1);
-        }
-        Debug.Log($"Engage Between From Joy {_joy.GetDelta2Normalized(out Vector2 lerp3Target)}");
+        if (!_joy.GetDelta2Normalized(out Vector2 lerpTarget)) lerp = moveBetweenPoints(lerp, lerpTarget, 1);
         return lerp;
     }
 

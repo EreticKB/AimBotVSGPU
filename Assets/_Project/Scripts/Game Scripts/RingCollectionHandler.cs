@@ -9,6 +9,7 @@ public class RingCollectionHandler : MonoBehaviour
     private Transform _transform;
     public Level LevelScript;
     private Vector3 _scale;
+    [SerializeField]private Collider _trigger;
     [SerializeField]private float _sizeUpTime = 3f;
     private void Awake()
     {
@@ -18,18 +19,27 @@ public class RingCollectionHandler : MonoBehaviour
         for (int i = 0; i < Rings.Count; i++) _ringScripts.Add(Rings[i].GetComponent<Ring>());
     }
 
-    public void EnableRing(int maxIndex, int difficulty, Vector3 position)
+    
+    public void EnableRing(int maxIndex, int difficulty, Vector3 distance, bool isInflate, bool isPlaying) //функция передвигает кольцо с текущей позиции на указанное расстояние.
     {
+        _trigger.enabled = isPlaying;
         _scale = new Vector3(0.1f, 0.1f, 1f);
         _transform.localScale = _scale;
-        _transform.position += position;
+        _transform.position += distance;
         _transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
         maxIndex = maxIndex > 0 ? maxIndex : 0;
         maxIndex = maxIndex < Rings.Count ? maxIndex : Rings.Count - 1;
         int ringIndex = Random.Range(1, maxIndex + 1);
         Rings[ringIndex].SetActive(true);
         _ringScripts[ringIndex].SetUpRing(difficulty);
-        StartCoroutine(SizeUp(0));
+        if (isInflate) StartCoroutine(SizeUp(0));
+        else StartCoroutine(SizeUp(0.99f));
+    }
+
+    public void ResetRingPosition(Vector3 zero)
+    {
+        _transform.position = zero;
+        DisableRings();
     }
     public void EnableStartRing(Vector3 position)
     {
@@ -39,10 +49,10 @@ public class RingCollectionHandler : MonoBehaviour
     public void DisableRings()
     {
         for (int i = 0; i < Rings.Count; i++) Rings[i].SetActive(false);
-        RingWasPassed();
     }
     public void RingWasPassed()
     {
+        DisableRings();
         LevelScript.MoveRingToNextPosition();
     }
 

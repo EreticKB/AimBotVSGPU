@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class Level : MonoBehaviour
     private Loop _loop;
     private int _difficulty;
     private int _ringTypes;
+    private bool _isSizeUpNeeded = true;
+    private bool _isPlaying = true;
     public enum LevelTypeList
     {
         None,
@@ -31,40 +34,59 @@ public class Level : MonoBehaviour
     private void Start()
     {
         if (LevelType == LevelTypeList.None) return;
-        _ringCollectionScript[0].EnableStartRing(Vector3.zero);
-        for (int i = 1; i < _poolSize / 2; i++)
-        {
-            //_ring[i].SetActive(true);
-            _ringCollectionScript[i].EnableRing(0, 0, new Vector3(0, 0, 400 * i));
-        }
+        PlaceRings(0);
+    }
+
+    private void PlaceRings(float zeroPoint)
+    {
+        _ringCollectionScript[0].EnableStartRing(new Vector3(0,0, zeroPoint));
+        for (int i = 0; i < _poolSize; i++) _ringCollectionScript[i].ResetRingPosition(new Vector3(0, 0, zeroPoint));
         if (LevelType == LevelTypeList.Endless)
         {
             SetGeneration(2, 1);
-            for (int i = _poolSize / 2; i < _poolSize; i++) _ringCollectionScript[i].EnableRing(_ringTypes, _difficulty, new Vector3(0, 0, 400 * i));
+            _isSizeUpNeeded = true;
+            _isPlaying = true;
         }
+        else if (LevelType == LevelTypeList.None)
+        {
+            _isSizeUpNeeded = false;
+            _isPlaying = false;
+        }
+        for (int i = 1; i < _poolSize / 2; i++)
+        {
+            _ringCollectionScript[i].EnableRing(0, 0, new Vector3(0, 0, (400 * i)), _isSizeUpNeeded, _isPlaying);
+        }
+        for (int i = _poolSize / 2; i < _poolSize; i++) _ringCollectionScript[i].EnableRing(_ringTypes, _difficulty, new Vector3(0, 0, (400 * i)), _isSizeUpNeeded, _isPlaying);
     }
 
     public void MoveRingToNextPosition()
     {
         if (LevelType == LevelTypeList.Endless)
         {
-            if (RingPassed.EndlessRecord < 3) SetGeneration(3,1);
-            else if (RingPassed.EndlessRecord < 18) SetGeneration(4,2);
-            else if (RingPassed.EndlessRecord < 30) SetGeneration(5,2);
-            else if (RingPassed.EndlessRecord < 40) SetGeneration(6,2);
+            if (RingPassed.EndlessRecord < 3) SetGeneration(3, 1);
+            else if (RingPassed.EndlessRecord < 18) SetGeneration(4, 2);
+            else if (RingPassed.EndlessRecord < 30) SetGeneration(5, 2);
+            else if (RingPassed.EndlessRecord < 40) SetGeneration(6, 2);
             else if (RingPassed.EndlessRecord < 60) SetGeneration(7, 2);
             else if (RingPassed.EndlessRecord < 80) SetGeneration(7, 3);
-            else if (RingPassed.EndlessRecord < 100) SetGeneration(9,3);
+            else if (RingPassed.EndlessRecord < 100) SetGeneration(9, 3);
             else if (RingPassed.EndlessRecord < 110) SetGeneration(9, 4);
             else if (RingPassed.EndlessRecord < 130) SetGeneration(10, 5);
             else SetGeneration(10, 6);
 
         }
-        _ringCollectionScript[_loop.Next()].EnableRing(_ringTypes, _difficulty, new Vector3(0, 0, 400 * _poolSize));
+        if (LevelType != LevelTypeList.None) _ringCollectionScript[_loop.Next()].EnableRing(_ringTypes, _difficulty, new Vector3(0, 0, 400 * _poolSize), _isSizeUpNeeded, _isPlaying);
     }
     private void SetGeneration(int ringTypes, int difficulty)
     {
         _ringTypes = ringTypes;
         _difficulty = difficulty;
+    }
+
+    public void SetEnd()
+    {
+        LevelType = LevelTypeList.None;
+        SetGeneration(0, 20);
+        PlaceRings(_ringCollectionScript[_loop.Next()].transform.position.z);
     }
 }

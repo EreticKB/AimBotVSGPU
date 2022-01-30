@@ -16,6 +16,6 @@ public class RingPassed : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         EndlessRecord++;
-        _ring.DisableRings();
+        _ring.RingWasPassed();
     }
 }

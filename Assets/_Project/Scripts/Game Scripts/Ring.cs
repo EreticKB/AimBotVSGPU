@@ -6,7 +6,6 @@ public class Ring : MonoBehaviour
     private byte _ringDirection;
     private float _ringSpeed;
     private float _ringOffSet;
-    [SerializeField]private int _difficulty;
 
     private Quaternion _target;
     private Vector3 _targetOffSet = new Vector3(0,0,90f);
@@ -31,9 +30,8 @@ public class Ring : MonoBehaviour
 
     public void SetUpRing(int difficulty)
     {
-        _difficulty = difficulty;
         _ringDirection = (byte)Random.Range(0, 2);
-        _ringSpeed = Random.Range(0f + (25f * _difficulty), 50f + (25f * _difficulty));
+        _ringSpeed = Random.Range(0f + (25f * difficulty), 50f + (25f * difficulty));
         _ringOffSet = Random.Range(0f, 90f);
         _transform.rotation = Quaternion.Euler(0, 0, _ringOffSet);
     }

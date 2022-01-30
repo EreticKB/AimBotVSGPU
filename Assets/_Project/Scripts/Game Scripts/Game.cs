@@ -12,6 +12,7 @@ public class Game : MonoBehaviour
 
     [SerializeField] FlyInterfaceController _flyInterface;
     [SerializeField] PlayerBehaviour _player;
+    [SerializeField] Level _level;
     [SerializeField] CanvasController _canvasRoot;
     [SerializeField] AudioSource _mainMenuMusic;
     public static Quaternion TiltOffSet = new Quaternion();
@@ -41,27 +42,12 @@ public class Game : MonoBehaviour
         PlayngEndless, //Играем. :)
         PlayingStory,
         DeathEndless,
-        DeathStory 
+        DeathStory
     }
     static GameState _currentState = GameState.FirstLoad;
-
-
-
-    public static void StartEndlessGame()
-    {
-        _currentState = GameState.PlayngEndless;
-        Level.LevelType = Level.LevelTypeList.Endless;
-        
-    }
-
-    public static void StartStoryGame()
-    {
-        _currentState = GameState.PlayingStory;
-        Level.LevelType = Level.LevelTypeList.Story;
-
-    }
     private void Awake()
     {
+        AdsHandler.SetGame(this);
         TiltOffSet = SavedTiltOffSet;
         if (_currentState == GameState.FirstLoad) _mainMenuMusic.Play();
         else _mainMenuMusic.Stop();
@@ -76,7 +62,7 @@ public class Game : MonoBehaviour
         }
         if (_currentState == GameState.PlayingStory)
         {
-            _flyInterface.SetLevelProgressActive(); 
+            _flyInterface.SetLevelProgressActive();
         }
         _flyInterface.SetStartTimer(StartTimer);
         StartCoroutine(startCountDown(StartTimer));
@@ -84,18 +70,33 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
-        if (_player.CurrentPlayerState == PlayerBehaviour.PlayerState.Crush)
-        {
-            _player.DisEngageEngine();
-            _flyInterface.SetCrashMenuActive(true);
-        }
+        if (_player.CurrentPlayerState == PlayerBehaviour.PlayerState.Crush) if (_player.DisEngageEngine())_flyInterface.SetCrashMenuActive(true);
         if (_currentState == GameState.DeathEndless)
         {
             _currentState = GameState.FirstLoad;
-            SaveHandler.LoadProperty(IndexEndlessRecord, out int record, 0);
-            if (record < RingPassed.EndlessRecord)  SaveHandler.SaveProperty(IndexEndlessRecord, RingPassed.EndlessRecord);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+    public static void StartEndlessGame()
+    {
+        _currentState = GameState.PlayngEndless;
+        Level.LevelType = Level.LevelTypeList.Endless;
+
+    }
+
+    public static void StartStoryGame()
+    {
+        _currentState = GameState.PlayingStory;
+        Level.LevelType = Level.LevelTypeList.Story;
+
+    }
+
+    public void SetEndAnimation()
+    {
+        _level.SetEnd();
+        _player.SetEnd();
+        SaveHandler.LoadProperty(IndexEndlessRecord, out int record, 0);
+        if (record < RingPassed.EndlessRecord) SaveHandler.SaveProperty(IndexEndlessRecord, RingPassed.EndlessRecord);
     }
     public void SetDeath()
     {
@@ -105,8 +106,7 @@ public class Game : MonoBehaviour
 
     public void UseContinue()
     {
-        Vector3 position = _player.transform.position;
-        _player.transform.position = new Vector3(0, 0, position.z-600);
+        _player.GetComponent<PlayerBehaviour>().ResetPosition(600);
         _flyInterface.SetCrashMenuActive(false);
         Start();
     }

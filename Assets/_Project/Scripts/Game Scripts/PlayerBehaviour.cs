@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
     private bool _isTiltEnabled;
-    
+
     public JoystickController JoyStick; //стик для любителей садомазо со стиками
     private Strafe _strafe;
     private Fly _fly;
@@ -29,7 +30,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Play,
         Wait,
-        Crush
+        Crush,
+        ExitSequence
     }
     public PlayerState CurrentPlayerState;
 
@@ -54,40 +56,35 @@ public class PlayerBehaviour : MonoBehaviour
     private void Update()
     {
         if (RingPassed.EndlessRecord <= _accelerationDistance) _fly.SetShipVelocity(Mathf.Lerp(_minSpeed, _maxSpeed, RingPassed.EndlessRecord / _accelerationDistance));
-        if (CurrentPlayerState != PlayerState.Play)
-        {
-            _fly.ShipEngineEngage(false);
-            return;
-        }
         _speedBar.SetSpeedStatus(RingPassed.EndlessRecord / _accelerationDistance);
         for (int i = 0; i <= _followersIndex; i++) _followers[i].TakeMyPosition(_transform.position);
-
         int offSet;
-        if (!_isTiltEnabled)
+        if (CurrentPlayerState == PlayerState.Play)
         {
-            if (Input.anyKey) _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromKey();
-            else return;
+
+            if (!_isTiltEnabled)
+            {
+                if (Input.anyKey) _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromKey();
+                else return;
+            }
+            else
+            {
+                _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromTilting(Game.TiltOffSet);
+            }
         }
-        else
+        else if (CurrentPlayerState == PlayerState.ExitSequence)
         {
-            _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromTilting(Game.TiltOffSet);
+            _lerp[_loop.Next(out offSet)] = _strafe.MoveToCenter();
         }
+        else return;
         for (int i = 0; i < Materials.Length; i++)
         {
             BendMaterial(Materials[i], 0f, 0.0005f, _lerp[offSet]); ;
         }
+
     }
 
-    public void AddFollower(IFollower follower)
-    {
-        _followers.Add(follower);
-        _followersIndex++;
-    }
-    public void RemoveFollower(IFollower follower)
-    {
-        _followers.Remove(follower);
-        _followersIndex--;
-    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (!_crashed)
@@ -105,15 +102,39 @@ public class PlayerBehaviour : MonoBehaviour
         CurrentPlayerState = PlayerState.Play;
         _engine.Play();
     }
-    public void DisEngageEngine()
+    public bool DisEngageEngine()//пробрасывает результат дальше.
     {
-        _fly.ShipEngineEngage(false);
+        bool check = _fly.ShipEngineEngage(false);
         CurrentPlayerState = PlayerState.Wait;
         _engine.Stop();
+        return check;
     }
-    private void enableFollowByName(string name, bool set)//сейчас не используется, заготовка для сюжетного режима.
+
+    internal void SetEnd()
+    {
+        CurrentPlayerState = PlayerState.ExitSequence;
+        enableFollowByName("WarpTunnel", false);
+        _fly.ShipEngineEngage(true);
+    }
+    public void AddFollower(IFollower follower)
+    {
+        _followers.Add(follower);
+        _followersIndex++;
+    }
+    public void RemoveFollower(IFollower follower)
+    {
+        _followers.Remove(follower);
+        _followersIndex--;
+    }
+    private void enableFollowByName(string name, bool set)
     {
         _followers[getFollowerByName(name)].IsFollow = set;
+    }
+
+    public void ResetPosition(float moveBack)
+    {
+        transform.position = new Vector3(0, 0, transform.position.z - moveBack);
+        _strafe.ResetPosition();
     }
 
     private int getFollowerByName(string name)

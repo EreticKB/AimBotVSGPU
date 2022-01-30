@@ -3,8 +3,8 @@
     "m_SelectedPackage": {
         "deviceId": "2c5525e9",
         "name": "com.EreticKB.WarpSimulator",
-        "processId": 7441,
-        "exited": false
+        "processId": 1052,
+        "exited": true
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
@@ -17,26 +17,32 @@
         {
             "deviceId": "2c5525e9",
             "name": "com.EreticKB.WarpSimulator",
-            "processId": 16978,
+            "processId": 25598,
             "exited": true
         },
         {
             "deviceId": "2c5525e9",
             "name": "com.EreticKB.WarpSimulator",
-            "processId": 32521,
+            "processId": 26521,
             "exited": true
         },
         {
             "deviceId": "2c5525e9",
             "name": "com.EreticKB.WarpSimulator",
-            "processId": 5249,
+            "processId": 27855,
             "exited": true
         },
         {
             "deviceId": "2c5525e9",
             "name": "com.EreticKB.WarpSimulator",
-            "processId": 7441,
-            "exited": false
+            "processId": 28566,
+            "exited": true
+        },
+        {
+            "deviceId": "2c5525e9",
+            "name": "com.EreticKB.WarpSimulator",
+            "processId": 1052,
+            "exited": true
         }
     ],
     "m_Tags": {

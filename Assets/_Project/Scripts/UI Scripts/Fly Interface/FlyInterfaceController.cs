@@ -6,11 +6,6 @@ public class FlyInterfaceController : MenuScriptControllerRoot
     [SerializeField] GameObject _timer;
     [SerializeField] GameObject _crashMenu;
 
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Alpha0)) _timer.
-    }
-
     public void SetLevelProgressActive()
     {
         _levelProgressBar.SetActive(true);

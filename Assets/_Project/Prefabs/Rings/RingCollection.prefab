@@ -69,6 +69,7 @@ MonoBehaviour:
   - {fileID: 2926362658446273082}
   - {fileID: 2982760698514883040}
   LevelScript: {fileID: 0}
+  _trigger: {fileID: 1163433005113946605}
   _sizeUpTime: 3
 --- !u!114 &5869775448559277044
 MonoBehaviour:

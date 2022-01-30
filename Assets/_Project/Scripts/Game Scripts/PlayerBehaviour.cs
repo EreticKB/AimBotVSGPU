@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] AudioSource _crash;
     [SerializeField] float _minSpeed;
     [SerializeField] float _maxSpeed;
+    private float _endGameAcceleration = 0;
 
     private List<IFollower> _followers = new List<IFollower>();//больше для практики шаблона, чем по необходимости, т.к. камеру оказалось проще прикрепить к игроку и сейчас используется только для 
     private int _followersIndex = -1;//того, чтобы держать "точку выхода" на постоянном удалении.
@@ -25,6 +26,7 @@ public class PlayerBehaviour : MonoBehaviour
     public Material[] Materials; //массив используемых в препятствиях и точке выхода материалов, позволяющий контроллируемо "искажать" туннель.
     private Vector2[] _lerp; //массив для хранения векторов Strafe._lerp. Используется для управления смещением "точки выхода" в отдалении от игрока.
     private Loop _loop;
+    private Vector2 _bendAmount;
 
     public enum PlayerState
     {
@@ -37,6 +39,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        _bendAmount = Vector2.zero;
         _accelerationDistance = _accelerationDistance == 0 ? 1 : _accelerationDistance;
         _crashed = false;
         _fly = GetComponent<Fly>();
@@ -55,13 +58,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (RingPassed.EndlessRecord <= _accelerationDistance) _fly.SetShipVelocity(Mathf.Lerp(_minSpeed, _maxSpeed, RingPassed.EndlessRecord / _accelerationDistance));
-        _speedBar.SetSpeedStatus(RingPassed.EndlessRecord / _accelerationDistance);
+
         for (int i = 0; i <= _followersIndex; i++) _followers[i].TakeMyPosition(_transform.position);
         int offSet;
         if (CurrentPlayerState == PlayerState.Play)
         {
-
+            if (RingPassed.EndlessRecord <= _accelerationDistance) _fly.SetShipVelocity(Mathf.Lerp(_minSpeed, _maxSpeed, RingPassed.EndlessRecord / _accelerationDistance));
+            _speedBar.SetSpeedStatus(RingPassed.EndlessRecord / _accelerationDistance);
             if (!_isTiltEnabled)
             {
                 if (Input.anyKey) _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromKey();
@@ -69,19 +72,22 @@ public class PlayerBehaviour : MonoBehaviour
             }
             else
             {
+                _speedBar.SetSpeedStatus(_endGameAcceleration);
                 _lerp[_loop.Next(out offSet)] = _strafe.UpdateFromTilting(Game.TiltOffSet);
             }
         }
         else if (CurrentPlayerState == PlayerState.ExitSequence)
         {
+            _endGameAcceleration = _endGameAcceleration < 1 ? _endGameAcceleration + Time.deltaTime : 1;
+            Debug.Log(_endGameAcceleration);
+            _fly.SetShipVelocity(Mathf.Lerp(0f, _maxSpeed * 3, _endGameAcceleration));
             _lerp[_loop.Next(out offSet)] = _strafe.MoveToCenter();
         }
         else return;
         for (int i = 0; i < Materials.Length; i++)
         {
-            BendMaterial(Materials[i], 0f, 0.0005f, _lerp[offSet]); ;
+            BendMaterial(Materials[i], 0f, 0.00025f, _lerp[offSet]);
         }
-
     }
 
 
@@ -93,7 +99,6 @@ public class PlayerBehaviour : MonoBehaviour
             _crashed = true;
         }
         CurrentPlayerState = PlayerState.Crush;
-        //_fly.ShipEngineEngage(false);
     }
 
     public void EngadeEngine()
@@ -135,6 +140,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         transform.position = new Vector3(0, 0, transform.position.z - moveBack);
         _strafe.ResetPosition();
+        StartCoroutine(SmoothBendToZero());
+        for (int i = 0; i < _lerp.Length; i++) _lerp[i] = new Vector2(0, 0);
     }
 
     private int getFollowerByName(string name)
@@ -151,5 +158,19 @@ public class PlayerBehaviour : MonoBehaviour
     {
         BendingShaderController.TrySetHorizontalBending(material, -Mathf.LerpUnclamped(minLimit, maxLimit, bend.x));
         BendingShaderController.TrySetVerticalBending(material, -Mathf.LerpUnclamped(minLimit, maxLimit, bend.y));
+    }
+
+    IEnumerator SmoothBendToZero()
+    {
+        float time = 0;
+        while (time < 1)
+        {
+            for (int i = 0; i < Materials.Length; i++)
+            {
+                BendMaterial(Materials[i], 0f, 0.0005f, Vector2.Lerp(_lerp[_loop.Current()], new Vector2(0,0), time));
+            }
+            time += Time.deltaTime;
+            yield return null;
+        }
     }
 }

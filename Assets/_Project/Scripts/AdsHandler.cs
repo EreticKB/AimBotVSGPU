@@ -7,6 +7,7 @@ public class AdsHandler : MonoBehaviour
     private static RewardedAd _rewardedAd;
     private static AdsButtonHandler _buttonHandler;
     private static Game _game;
+    private static int _counter = 3;
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -35,7 +36,7 @@ public class AdsHandler : MonoBehaviour
 
     private static void HandlerRewardedAdClosed(object sender, EventArgs e)
     {
-
+        LoadRewardedAd(_buttonHandler._adUnitId);
     }
 
     public static void SetAdsHandler(AdsButtonHandler handler)
@@ -44,6 +45,7 @@ public class AdsHandler : MonoBehaviour
     }
     public static void SetGame(Game game)
     {
+        _counter = 3;
         _game = game;
     }
     public static void ShowAd()
@@ -58,6 +60,7 @@ public class AdsHandler : MonoBehaviour
 
     private static void HandleRewardedAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-        Debug.Log($"Failure Message: {args.LoadAdError.GetMessage()}");
+        if (_counter > 0) LoadRewardedAd(_buttonHandler._adUnitId);
+        _counter--;
     }
 }

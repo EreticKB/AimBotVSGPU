@@ -3,11 +3,7 @@ using UnityEngine;
 public class RingPassed : MonoBehaviour
 {
     private RingCollectionHandler _ring;
-    public static int EndlessRecord
-    {
-        get;
-        private set;
-    }
+    public static int EndlessRecord;
     private void Awake()
     {
         EndlessRecord = 0;

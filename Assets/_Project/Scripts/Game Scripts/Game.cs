@@ -108,6 +108,7 @@ public class Game : MonoBehaviour
     {
         _player.GetComponent<PlayerBehaviour>().ResetPosition(600);
         _flyInterface.SetCrashMenuActive(false);
+        RingPassed.EndlessRecord -= 10;
         Start();
     }
     IEnumerator startCountDown(float timer)

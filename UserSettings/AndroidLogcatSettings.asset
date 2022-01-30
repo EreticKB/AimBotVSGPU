@@ -3,8 +3,8 @@
     "m_SelectedPackage": {
         "deviceId": "2c5525e9",
         "name": "com.EreticKB.WarpSimulator",
-        "processId": 1052,
-        "exited": true
+        "processId": 29953,
+        "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
@@ -13,12 +13,6 @@
             "name": "com.miui.home",
             "processId": 2882,
             "exited": false
-        },
-        {
-            "deviceId": "2c5525e9",
-            "name": "com.EreticKB.WarpSimulator",
-            "processId": 25598,
-            "exited": true
         },
         {
             "deviceId": "2c5525e9",
@@ -43,6 +37,18 @@
             "name": "com.EreticKB.WarpSimulator",
             "processId": 1052,
             "exited": true
+        },
+        {
+            "deviceId": "2c5525e9",
+            "name": "com.EreticKB.WarpSimulator",
+            "processId": 28697,
+            "exited": true
+        },
+        {
+            "deviceId": "2c5525e9",
+            "name": "com.EreticKB.WarpSimulator",
+            "processId": 29953,
+            "exited": false
         }
     ],
     "m_Tags": {

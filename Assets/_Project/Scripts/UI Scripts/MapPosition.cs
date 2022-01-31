@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class MapPosition : MonoBehaviour
 {
-    private Strafe _strafe;
     [SerializeField] JoystickController _joyStick = null;
     [SerializeField] RectTransform _point;
     [SerializeField] private float _radius;
     [SerializeField] private float _speed;
+    private Strafe _strafe;
     private void Awake()
     {
         if (_joyStick == null) _strafe = new Strafe(_point, _speed, _radius, _loadSensitivity());
@@ -28,5 +28,6 @@ public class MapPosition : MonoBehaviour
     {
         SaveHandler.LoadProperty(Game.IndexControlSensitivity, out float value, 0.2f);
         return value;
+
     }
 }

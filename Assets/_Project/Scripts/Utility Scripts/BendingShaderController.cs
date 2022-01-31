@@ -130,4 +130,14 @@ public static class BendingShaderController
         if (value) material.EnableKeyword("BOOLEAN_ENABLEBENDING_ON");
         else material.DisableKeyword("BOOLEAN_ENABLEBENDING_ON");
     }
+    //===============================================================
+    public static float GetHorizontalBending(Material material)
+    {
+        return material.GetFloat(_horizontalBendingAmount);
+    }
+    //===============================================================
+    public static float GetVerticalBending(Material material)
+    {
+        return material.GetFloat(_verticalBendingAmount);
+    }
 }

@@ -71,7 +71,7 @@ public class Strafe
         if (Input.GetKey(KeyCode.A)) _lerp = moveLeft(_lerp, Speed);
         if (Input.GetKey(KeyCode.D)) _lerp = moveRight(_lerp, Speed);
         //=============================================
-        if (_joy != null) if (_joy.isActiveAndEnabled) if (Input.anyKey) _lerp = moveByJoy(_lerp);
+        if (_joy != null) if (_joy.isActiveAndEnabled) if (Input.anyKey) _lerp = updateByJoy(_lerp);
         MoveTransformByLerp(_lerp);
         return _lerp;
     }
@@ -85,16 +85,25 @@ public class Strafe
         _lerp = moveBetweenPoints(_lerp, tilting, _correction);
         return _lerp;
     }
+    private Vector2 updateByJoy(Vector2 lerp)
+    {
 
+        if (!_joy.GetDelta2Normalized(out Vector2 lerpTarget)) lerp = moveBetweenPoints(lerp, lerpTarget, 1);
+        return lerp;
+    }
+
+    public Vector2 MoveToCenter()
+    {
+        _lerp = moveBetweenPoints(_lerp, Vector3.zero, 1);
+        return _lerp;
+    }
     private Vector3 moveBetweenPoints(Vector3 start, Vector3 end, float correction)
     {
-        start.x = Mathf.Lerp(start.x, end.x * correction, Speed * Time.deltaTime);
-        start.y = Mathf.Lerp(start.y, end.y * correction, Speed * Time.deltaTime);
+        start = Vector2.Lerp(start, end * correction, Speed * Time.deltaTime);
         if (start.sqrMagnitude > 1) start = start.normalized;
         MoveTransformByLerp(start);
         return start;
     }
-
     private void MoveTransformByLerp(Vector2 lerp)
     {
         Vector3 position = _transform.localPosition;
@@ -103,15 +112,6 @@ public class Strafe
         _transform.localPosition = position;
     }
 
-    private Vector2 moveByJoy(Vector2 lerp)
-    {
-
-        if (!_joy.GetDelta2Normalized(out Vector2 lerpTarget))
-        {
-            lerp = moveBetweenPoints(lerp, lerpTarget, 1);
-        }
-        return lerp;
-    }
 
     private Vector2 moveUp(Vector2 lerp, float speed)
     {
@@ -137,5 +137,9 @@ public class Strafe
         lerp += Vector2.left * speed * Time.deltaTime;
         if (lerp.sqrMagnitude > 1) return lerp.normalized;
         else return lerp;
+    }
+    public void ResetPosition()
+    {
+        _lerp = Vector2.zero;
     }
 }

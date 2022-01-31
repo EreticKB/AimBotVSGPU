@@ -2,8 +2,7 @@
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MenuScriptControllerRoot
-{
-    
+{   
     public void GoToLevelSelect()
     {
         MenuTravel(2);

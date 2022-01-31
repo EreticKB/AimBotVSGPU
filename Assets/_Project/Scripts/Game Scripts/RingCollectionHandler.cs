@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class RingCollectionHandler : MonoBehaviour
 {
-    public List<GameObject> Rings;
+    public Level LevelScript; //потом разберусь, можно ли его сделать приватным и заполнять при создании объекта из префаба.
+    [SerializeField] Collider _trigger;
+    [SerializeField] float _sizeUpTime = 3f;
+    [SerializeField] List<GameObject> Rings;
+    private Vector3 _scale;
     private List<Ring> _ringScripts;
     private Transform _transform;
-    public Level LevelScript;
-    private Vector3 _scale;
-    [SerializeField]private Collider _trigger;
-    [SerializeField]private float _sizeUpTime = 3f;
+    
     private void Awake()
     {
         _ringScripts = new List<Ring>(Rings.Count);

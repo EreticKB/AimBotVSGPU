@@ -43,7 +43,7 @@ public class JoystickController : MonoBehaviour, IPointerDownHandler, IPointerUp
     {
         if (_singleTouchCheck != data.pointerId) return;
         _positionDelta = Input.mousePosition - _zeroInGlobalCoords;
-        if (_positionDelta.sqrMagnitude > Mathf.Pow(_radius * _radiusScale, 2)) _positionDelta = _positionDelta.normalized * _radius * _radiusScale; //не забыть сделать радиус настраиваемым
+        if (_positionDelta.sqrMagnitude > Mathf.Pow(_radius * _radiusScale, 2)) _positionDelta = _positionDelta.normalized * _radius * _radiusScale;
         _stick.position = _zeroInGlobalCoords + _positionDelta;
     }
     public void OnPointerUp(PointerEventData data)

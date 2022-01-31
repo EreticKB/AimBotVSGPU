@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Strafe
@@ -139,7 +138,6 @@ public class Strafe
         if (lerp.sqrMagnitude > 1) return lerp.normalized;
         else return lerp;
     }
-
     public void ResetPosition()
     {
         _lerp = Vector2.zero;

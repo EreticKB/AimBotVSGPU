@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class AttitudeCheck : MonoBehaviour
 {
-    private Text _text;
     public Vector3 _orientation;
     public Vector2 x;
     public Vector2 y;
     public Vector3 Tilt;
-
+    private Text _text;
     void Start()
     {
         _text = GetComponent<Text>();

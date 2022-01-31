@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class FinishMenuSetUp : MonoBehaviour
 {
-    [SerializeField] private GameObject _stillHaveTries;
-    [SerializeField] private GameObject _finishSubMenu;
+    //Переключаемся между подменю.
+    [SerializeField] GameObject _stillHaveTries;
+    [SerializeField] GameObject _finishSubMenu;
 
     public void SetUpFinish()
     {

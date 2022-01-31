@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 public class TimerPanelController : MonoBehaviour
 {
-
-    public float Timer;
+    public float Timer;//нужна паблик, т.к. устанавливается из других скриптов.
     private float _timer;
     [SerializeField] Text _counter;
     private void OnEnable()

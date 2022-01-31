@@ -2584,12 +2584,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782cf30f939a25a48804619e9b938596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ButtonClick: {fileID: 542097890}
   _canvas:
   - {fileID: 1552176108}
   - {fileID: 1845987763}
   - {fileID: 1274249513}
   - {fileID: 1642214281}
-  ButtonClick: {fileID: 542097890}
 --- !u!4 &542097889
 Transform:
   m_ObjectHideFlags: 0
@@ -3458,7 +3458,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh53460
+  m_Name: pb_Mesh277910
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4131,7 +4131,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 4a6f8dd4a97c46a4f825a5a379707e97, type: 2}
   - {fileID: 2100000, guid: 88538da5b71e116439e6c1927234df7d, type: 2}
   - {fileID: 2100000, guid: a1ebb5132f727d043b53629a18b54fb3, type: 2}
-  CurrentPlayerState: 0
+  CurrentPlayerState: 1
 --- !u!54 &862657819
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4363,7 +4363,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 3200
+  far clip plane: 3300
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -4930,7 +4930,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh52786
+  m_Name: pb_Mesh277208
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14011,7 +14011,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh53262
+  m_Name: pb_Mesh277702
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14181,8 +14181,8 @@ GameObject:
   - component: {fileID: 1799208350}
   - component: {fileID: 1799208349}
   - component: {fileID: 1799208348}
-  - component: {fileID: 1799208351}
   - component: {fileID: 1799208352}
+  - component: {fileID: 1799208351}
   m_Layer: 0
   m_Name: WarpTunnel
   m_TagString: Untagged
@@ -14222,10 +14222,10 @@ MonoBehaviour:
   IsPositionFollowed: 0
   Player: {fileID: 862657818}
   CloseStart: 1
-  PrewarmTimer: 3
   StartDistance: 0.2
+  PrewarmTimer: 3
   _isFollow: 1
-  MyName: WarpTunnel
+  _myName: WarpTunnel
 --- !u!199 &1799208349
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -19033,7 +19033,7 @@ Transform:
   m_GameObject: {fileID: 1818398342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 270, y: 270, z: 90}
+  m_LocalScale: {x: 280, y: 280, z: 100}
   m_Children: []
   m_Father: {fileID: 1799208347}
   m_RootOrder: 0
@@ -19646,7 +19646,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh52880
+  m_Name: pb_Mesh277302
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20377,7 +20377,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh52924
+  m_Name: pb_Mesh277346
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

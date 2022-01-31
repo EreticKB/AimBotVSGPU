@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using SerializedStructContainer;
 //ќбщий класс, хран€щий наиболее глобальные параметры и управл€ющий основным игровым процессом.
 public class Game : MonoBehaviour
 {
@@ -8,34 +9,26 @@ public class Game : MonoBehaviour
     public static readonly string IndexControlSensitivity = "ControlSensitivity";
     public static readonly string IndexTiltActivation = "TiltActivation";
     public static readonly string IndexEndlessRecord = "EndlessRecord";
+    public static readonly string IndexTiltOffSet = "TiltOffSet";
     public float StartTimer;
-
     [SerializeField] FlyInterfaceController _flyInterface;
     [SerializeField] PlayerBehaviour _player;
     [SerializeField] Level _level;
     [SerializeField] CanvasController _canvasRoot;
     [SerializeField] AudioSource _mainMenuMusic;
     public static Quaternion TiltOffSet = new Quaternion();
-    public static Quaternion SavedTiltOffSet //€ знаю, что можно просто конвертировать юнити кватернион в сериализуемый кватернион, но буду делать если останетс€ врем€.
+    public static Quaternion SavedTiltOffSet
     {
         get
         {
-            Quaternion quaternion = new Quaternion();
-            SaveHandler.LoadProperty("TiltQuaternionX", out quaternion.x, Quaternion.Euler(0, 0, 0).x);
-            SaveHandler.LoadProperty("TiltQuaternionY", out quaternion.y, Quaternion.Euler(0, 0, 0).y);
-            SaveHandler.LoadProperty("TiltQuaternionZ", out quaternion.z, Quaternion.Euler(0, 0, 0).z);
-            SaveHandler.LoadProperty("TiltQuaternionW", out quaternion.w, Quaternion.Euler(0, 0, 0).w);
+            SaveHandler.LoadProperty(IndexTiltOffSet, out SerializableQuaternion quaternion, Quaternion.Euler(0, 0, 0));
             return quaternion;
         }
         set
         {
-            SaveHandler.SaveProperty("TiltQuaternionX", value.x);
-            SaveHandler.SaveProperty("TiltQuaternionY", value.y);
-            SaveHandler.SaveProperty("TiltQuaternionZ", value.z);
-            SaveHandler.SaveProperty("TiltQuaternionW", value.w);
+            SaveHandler.SaveProperty(IndexTiltOffSet, value);
         }
     }
-
     enum GameState
     {
         FirstLoad, //ѕерва€ загрузка игры.
@@ -54,6 +47,7 @@ public class Game : MonoBehaviour
     }
     private void Start()
     {
+        
         _canvasRoot.ActivateInterfaceByIndex(_currentState == GameState.FirstLoad ? 0 : 3);
         if (_currentState == GameState.FirstLoad) return;
         if (_currentState == GameState.PlayngEndless)
@@ -81,14 +75,12 @@ public class Game : MonoBehaviour
     {
         _currentState = GameState.PlayngEndless;
         Level.LevelType = Level.LevelTypeList.Endless;
-
     }
 
     public static void StartStoryGame()
     {
         _currentState = GameState.PlayingStory;
         Level.LevelType = Level.LevelTypeList.Story;
-
     }
 
     public void SetEndAnimation()
@@ -106,9 +98,9 @@ public class Game : MonoBehaviour
 
     public void UseContinue()
     {
-        _player.GetComponent<PlayerBehaviour>().ResetPosition(600);
+        _player.GetComponent<PlayerBehaviour>().ResetPosition(900);
         _flyInterface.SetCrashMenuActive(false);
-        RingPassed.EndlessRecord -= 10;
+        RingPassed.EndlessRecord = RingPassed.EndlessRecord<10 ? 0: RingPassed.EndlessRecord - 10;
         Start();
     }
     IEnumerator startCountDown(float timer)

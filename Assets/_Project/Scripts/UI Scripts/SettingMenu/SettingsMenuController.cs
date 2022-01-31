@@ -6,5 +6,4 @@ public class SettingsMenuController : MenuScriptControllerRoot
     {
         MenuTravel(0);
     }
-
 }

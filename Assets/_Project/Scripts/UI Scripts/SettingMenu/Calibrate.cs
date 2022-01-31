@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Calibrate : MonoBehaviour
 {
+    //не идеально, т.к. надо очень сильно зарываться в математику, для полностью корректной работы, но позволяет делать часть положений нулями, можно играть даже экраном вниз.
     public void CalibrateTilt()
     {
         Vector3 inputTilting = Input.acceleration;

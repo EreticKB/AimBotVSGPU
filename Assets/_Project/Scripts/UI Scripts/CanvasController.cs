@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class CanvasController : MonoBehaviour
 {
+    public AudioSource ButtonClick;
     [SerializeField] GameObject[] _canvas;
     MenuScriptControllerRoot[] _menuController;
-    public AudioSource ButtonClick;
 
     private void Start()
     {

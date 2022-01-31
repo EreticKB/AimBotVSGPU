@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -63,16 +62,16 @@ public class Level : MonoBehaviour
     {
         if (LevelType == LevelTypeList.Endless)
         {
-            if (RingPassed.EndlessRecord < 3) SetGeneration(3, 1);
-            else if (RingPassed.EndlessRecord < 18) SetGeneration(4, 2);
-            else if (RingPassed.EndlessRecord < 30) SetGeneration(5, 2);
-            else if (RingPassed.EndlessRecord < 40) SetGeneration(6, 2);
-            else if (RingPassed.EndlessRecord < 60) SetGeneration(7, 2);
-            else if (RingPassed.EndlessRecord < 80) SetGeneration(7, 3);
-            else if (RingPassed.EndlessRecord < 100) SetGeneration(9, 3);
-            else if (RingPassed.EndlessRecord < 110) SetGeneration(9, 4);
-            else if (RingPassed.EndlessRecord < 130) SetGeneration(10, 5);
-            else SetGeneration(10, 6);
+            if (RingPassed.EndlessRecord < 3) SetGeneration(3, 5);
+            else if (RingPassed.EndlessRecord < 18) SetGeneration(4, 5);
+            else if (RingPassed.EndlessRecord < 30) SetGeneration(5, 5);
+            else if (RingPassed.EndlessRecord < 40) SetGeneration(6, 10);
+            else if (RingPassed.EndlessRecord < 60) SetGeneration(7, 10);
+            else if (RingPassed.EndlessRecord < 80) SetGeneration(7, 10);
+            else if (RingPassed.EndlessRecord < 100) SetGeneration(9, 15);
+            else if (RingPassed.EndlessRecord < 110) SetGeneration(9, 15);
+            else if (RingPassed.EndlessRecord < 130) SetGeneration(10, 15);
+            else SetGeneration(10, 20);
 
         }
         if (LevelType != LevelTypeList.None) _ringCollectionScript[_loop.Next()].EnableRing(_ringTypes, _difficulty, new Vector3(0, 0, 400 * _poolSize), _isSizeUpNeeded, _isPlaying);

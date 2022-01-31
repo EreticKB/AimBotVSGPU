@@ -5,7 +5,6 @@ public class FlyInterfaceController : MenuScriptControllerRoot
     [SerializeField] GameObject _endlessRecordStatus;
     [SerializeField] GameObject _timer;
     [SerializeField] GameObject _crashMenu;
-
     public void SetLevelProgressActive()
     {
         _levelProgressBar.SetActive(true);

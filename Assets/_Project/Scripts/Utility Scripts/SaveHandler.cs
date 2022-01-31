@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using SerializedStructContainer;
 
 static class SaveHandler
 //Класс создан для того, чтобы спокойно взаимодействовать с PlayerPrefs не задумываясь над типом передаваемых данных, что позволяет даже менять
@@ -47,7 +48,7 @@ static class SaveHandler
     {
         LoadProperty(name, out value, "");
     }
-    //
+    //============================================================
     //Использование целых чисел для хранения булевых переменных.
     public static void LoadProperty(string name, out bool value, bool defaultValue)
     {
@@ -65,4 +66,24 @@ static class SaveHandler
         PlayerPrefs.Save();
     }
     //============================================================
+    //Сохранения сериализуемого кватерниона
+    public static void LoadProperty(string name, out SerializableQuaternion value, SerializableQuaternion defaultValue)
+    {
+        //int state = PlayerPrefs.GetInt(name, defaultValue ? 1 : 0);
+        string loadedValue = PlayerPrefs.GetString(name, "DefaultString");
+        if (loadedValue.Equals("DefaultString")) value = defaultValue;
+        else value = new SerializableQuaternion(loadedValue);
+
+    }
+    public static void LoadProperty(string name, out SerializableQuaternion value)
+    {
+        LoadProperty(name, out value, Quaternion.Euler(0, 0, 0));
+    }
+    public static void SaveProperty(string name, SerializableQuaternion value)
+    {
+        PlayerPrefs.SetString(name, value.Serialize());
+        PlayerPrefs.Save();
+    }
+
+
 }

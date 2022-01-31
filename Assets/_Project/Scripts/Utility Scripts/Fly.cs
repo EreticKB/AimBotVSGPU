@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Fly : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    [SerializeField] float _speed;
     private Rigidbody _rigidbody;
     bool _fly;
     private void Awake()
@@ -24,7 +24,6 @@ public class Fly : MonoBehaviour
         if (_fly == engage) return false;
         _fly = engage;
         return true;
-
     }
 
     public bool GetShipEngineStatus()
